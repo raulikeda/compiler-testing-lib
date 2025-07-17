@@ -2,10 +2,11 @@
 set -e
 
 echo "Cleaning old builds..."
-rm -rf dist build *.egg-info
+rm -rf build/* dist/* *.egg-info
 
 echo "Building package..."
-python3 setup.py sdist bdist_wheel
+pip install --upgrade build twine
+python3 -m build --outdir build
 
 echo "Uploading to PyPI..."
-twine upload dist/* 
+twine upload build/* 

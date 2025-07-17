@@ -8,7 +8,9 @@ class TestRunner:
             raise ValueError("version must be specified")
         self.language = language
         self.version = version
-        self.base_path = os.path.join('languages', self.language, self.version)
+        # Get the directory where this file (runner.py) is located
+        self._root_dir = os.path.dirname(os.path.abspath(__file__))
+        self.base_path = os.path.join(self._root_dir, '../languages', self.language, self.version)
         self.test_yaml_path = os.path.join(self.base_path, 'test.yaml')
         self.tests = self.load_tests()
         self.max_errors = max_errors

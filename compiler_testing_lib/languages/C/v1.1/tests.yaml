@@ -1,0 +1,169 @@
+tests:
+- index: 1
+  name: test001
+  description: Valid Input
+  input: []
+  output:
+  - '6'
+  exception: false
+- index: 2
+  name: test002
+  description: Missing Number After +
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 3
+  name: test003
+  description: Missing Number After -
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 4
+  name: test004
+  description: Empty Input
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 5
+  name: test005
+  description: Only Operator +
+  input: []
+  output:
+  - Unexpected token PLUS
+  exception: true
+- index: 6
+  name: test006
+  description: Only Operator -
+  input: []
+  output:
+  - Unexpected token MINUS
+  exception: true
+- index: 7
+  name: test007
+  description: No Operator
+  input: []
+  output:
+  - Unexpected token INT
+  exception: true
+- index: 8
+  name: test008
+  description: Invalid Token
+  input: []
+  output:
+  - Invalid token ,
+  exception: true
+- index: 9
+  name: test009
+  description: Starting with Operator *
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 10
+  name: test010
+  description: Starting with Operator /
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 11
+  name: test011
+  description: Missing Number After *
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 12
+  name: test012
+  description: Missing Number After /
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 13
+  name: test013
+  description: Only Operator *
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 14
+  name: test014
+  description: Only Operator /
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 15
+  name: test015
+  description: Two Consecultives Operators +*
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 16
+  name: test016
+  description: Two Consecultives Operators +/
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 17
+  name: test017
+  description: Two Consecultives Operators **
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 18
+  name: test018
+  description: Two Consecultives Operators //
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 19
+  name: test019
+  description: Two Consecultives Operators */
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 20
+  name: test020
+  description: Two Consecultives Operators /*
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 21
+  name: test021
+  description: Missing )
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 22
+  name: test022
+  description: Missing (
+  input: []
+  output:
+  - Unexpected token CLOSE_PAR
+  exception: true
+- index: 23
+  name: test023
+  description: Missing )
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 24
+  name: test024
+  description: Missing (
+  input: []
+  output:
+  - Unexpected token CLOSE_PAR
+  exception: true

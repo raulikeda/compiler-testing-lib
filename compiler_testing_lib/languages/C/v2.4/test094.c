@@ -1,0 +1,3 @@
+main() {
+  // Missing function type
+}

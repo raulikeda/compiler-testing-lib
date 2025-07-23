@@ -1,0 +1,400 @@
+tests:
+- index: 1
+  name: test001
+  description: Valid Input
+  input:
+  - '3'
+  output:
+  - '3'
+  - '0'
+  - '1'
+  - '6'
+  - '12'
+  exception: false
+- index: 2
+  name: test002
+  description: Missing Expression After +
+  input: []
+  output:
+  - Unexpected token EOL
+  exception: true
+- index: 3
+  name: test003
+  description: Missing Expression After -
+  input: []
+  output:
+  - Unexpected token EOL
+  exception: true
+- index: 4
+  name: test004
+  description: Empty Expression
+  input: []
+  output:
+  - Unexpected token EOL
+  exception: true
+- index: 5
+  name: test005
+  description: Missing Expression After +
+  input: []
+  output:
+  - Unexpected token EOL
+  exception: true
+- index: 6
+  name: test006
+  description: Missing Expression After -
+  input: []
+  output:
+  - Unexpected token EOL
+  exception: true
+- index: 7
+  name: test007
+  description: No Operator
+  input: []
+  output:
+  - Unexpected token INT
+  exception: true
+- index: 8
+  name: test008
+  description: Invalid Token
+  input: []
+  output:
+  - Invalid token ,
+  exception: true
+- index: 9
+  name: test009
+  description: Starting with Operator *
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 10
+  name: test010
+  description: Starting with Operator /
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 11
+  name: test011
+  description: Missing Number After *
+  input: []
+  output:
+  - Unexpected token EOL
+  exception: true
+- index: 12
+  name: test012
+  description: Missing Number After /
+  input: []
+  output:
+  - Unexpected token EOL
+  exception: true
+- index: 13
+  name: test013
+  description: Only Operator *
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 14
+  name: test014
+  description: Only Operator /
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 15
+  name: test015
+  description: Two Consecultives Operators +*
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 16
+  name: test016
+  description: Two Consecultives Operators +/
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 17
+  name: test017
+  description: Two Consecultives Operators **
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 18
+  name: test018
+  description: Wrong Comment
+  input: []
+  output:
+  - Unexpected token CLOSE_BRA
+  exception: true
+- index: 19
+  name: test019
+  description: Two Consecultives Operators */
+  input: []
+  output:
+  - Unexpected token DIV
+  exception: true
+- index: 20
+  name: test020
+  description: Two Consecultives Operators /*
+  input: []
+  output:
+  - Unexpected token MULT
+  exception: true
+- index: 21
+  name: test021
+  description: Missing )
+  input: []
+  output:
+  - Missing CLOSE_PAR
+  exception: true
+- index: 22
+  name: test022
+  description: Missing (
+  input: []
+  output:
+  - Unexpected token CLOSE_PAR
+  exception: true
+- index: 23
+  name: test023
+  description: Missing )
+  input: []
+  output:
+  - Missing CLOSE_PAR
+  exception: true
+- index: 24
+  name: test024
+  description: Missing (
+  input: []
+  output:
+  - Unexpected token CLOSE_PAR
+  exception: true
+- index: 25
+  name: test025
+  description: Wrong Print
+  input: []
+  output:
+  - Unexpected token OPEN_PAR
+  exception: true
+- index: 26
+  name: test026
+  description: No Operator
+  input: []
+  output:
+  - Unexpected token IDEN
+  exception: true
+- index: 27
+  name: test027
+  description: Missing (
+  input: []
+  output:
+  - Unexpected token INT (expected OPEN_PAR)
+  exception: true
+- index: 28
+  name: test028
+  description: Missing )
+  input: []
+  output:
+  - Unexpected token EOL (expected CLOSE_PAR)
+  exception: true
+- index: 29
+  name: test029
+  description: Missing ()
+  input: []
+  output:
+  - Unexpected token INT (expected OPEN_PAR)
+  exception: true
+- index: 30
+  name: test030
+  description: Missing Identifier
+  input: []
+  output:
+  - Identifier not found
+  exception: true
+- index: 31
+  name: test031
+  description: Missing }
+  input: []
+  output:
+  - Unexpected token EOF (expected CLOSE_BRA)
+  exception: true
+- index: 32
+  name: test032
+  description: Extra {}
+  input: []
+  output:
+  - // Unexpected token OPEN_BRA (expected EOF)
+  exception: true
+- index: 33
+  name: test033
+  description: Extra nested {}
+  input: []
+  output:
+  - // Unexpected token OPEN_BRA
+  exception: true
+- index: 34
+  name: test034
+  description: Extra }
+  input: []
+  output:
+  - Unexpected token CLOSE_BRA (expected EOF)
+  exception: true
+- index: 35
+  name: test035
+  description: Missing {}
+  input: []
+  output:
+  - Unexpected token IDEN (expected OPEN_BRA)
+  exception: true
+- index: 36
+  name: test036
+  description: Missing {}
+  input: []
+  output:
+  - Unexpected token EOF (expected OPEN_BRA)
+  exception: true
+- index: 37
+  name: test037
+  description: Invalid Identifier Name
+  input: []
+  output:
+  - Unexpected token IDEN
+  exception: true
+- index: 38
+  name: test038
+  description: Use Print as Identifier
+  input: []
+  output:
+  - Unexpected token ASSIGN (expected OPEN_PAR)
+  exception: true
+- index: 39
+  name: test039
+  description: Missing )
+  input: []
+  output:
+  - Unexpected token EOL (expected CLOSE_PAR)
+  exception: true
+- index: 40
+  name: test040
+  description: Use Number as Identifier
+  input: []
+  output:
+  - Unexpected token INT
+  exception: true
+- index: 41
+  name: test041
+  description: If without }
+  input: []
+  output:
+  - Missing CLOSE_BRA
+  exception: true
+- index: 42
+  name: test042
+  description: If without {
+  input: []
+  output:
+  - Missing OPEN_BRA
+  exception: true
+- index: 43
+  name: test043
+  description: Else without }
+  input: []
+  output:
+  - Missing CLOSE_BRA
+  exception: true
+- index: 44
+  name: test044
+  description: Else without {
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 45
+  name: test045
+  description: While without }
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 46
+  name: test046
+  description: While without {
+  input: []
+  output:
+  - Missing OPEN_BRA
+  exception: true
+- index: 47
+  name: test047
+  description: If with 2 Blocks
+  input: []
+  output:
+  - Unexpected OPEN_BRA
+  exception: true
+- index: 48
+  name: test048
+  description: If with 2 Else's
+  input: []
+  output:
+  - Unexpected OPEN_BRA
+  exception: true
+- index: 49
+  name: test049
+  description: Missing Equal operand
+  input: []
+  output:
+  - Missing Right Expression
+  exception: true
+- index: 50
+  name: test050
+  description: Missing > operand
+  input: []
+  output:
+  - Missing Right Expression
+  exception: true
+- index: 51
+  name: test051
+  description: Missing < operand
+  input: []
+  output:
+  - Missing Right Expression
+  exception: true
+- index: 52
+  name: test052
+  description: Missing Not operand
+  input: []
+  output:
+  - Missing Right Expression
+  exception: true
+- index: 53
+  name: test053
+  description: Missing Reader (
+  input:
+  - '1'
+  output:
+  - Missing OPEN_PAR
+  exception: true
+- index: 54
+  name: test054
+  description: Missing Reader )
+  input:
+  - '1'
+  output:
+  - Missing CLOSE_PAR
+  exception: true
+- index: 55
+  name: test055
+  description: If missing PAR
+  input: []
+  output:
+  - Missing OPEN_PAR in If
+  exception: true
+- index: 56
+  name: test056
+  description: While missing PAR
+  input: []
+  output:
+  - Missing OPEN_PAR in While
+  exception: true

@@ -3,4 +3,4 @@ def is_prime(n):
     raise Exception("Exception raised")
 
 # Function call for demonstration
-is_prime(10) 
+is_prime(int(input()))

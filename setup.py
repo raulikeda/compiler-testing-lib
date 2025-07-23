@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='compiler-testing-lib',
-    version='0.1.6',
+    version='0.1.7',
     description='A testing library for running language/compiler tests from YAML metadata.',
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -3,7 +3,7 @@ import yaml
 import subprocess
 
 class TestRunner:
-    def __init__(self, language='c', version=None, max_errors=5, timeout=10, file_extension='py'):
+    def __init__(self, language='C', version=None, max_errors=5, timeout=10, file_extension='c'):
         if version is None:
             raise ValueError("version must be specified")
         self.language = language
@@ -28,7 +28,8 @@ class TestRunner:
             test_file = os.path.join(self.base_path, f"{test['name']}.{self.file_extension}")
             command = f"{command_template} {test_file}"
             try:
-                result = subprocess.run(command, shell=True, capture_output=True, text=True, timeout=self.timeout)
+                input_values = ('\n').join(test['input'])
+                result = subprocess.run(command, shell=True, capture_output=True, text=True, timeout=self.timeout, input=input_values)
                 stdout = result.stdout.strip()
                 stderr = result.stderr.strip()
                 exit_code = result.returncode
@@ -48,8 +49,8 @@ class TestRunner:
                     'actual': f'Exception: {str(e)}'
                 })
                 break
-            expect_success = test.get('result') is True or test.get('result') == True
-            expect_fail = test.get('result') is False or test.get('result') == False
+            expect_success = test.get('exception') is False or test.get('exception') == False
+            expect_fail = test.get('exception') is True or test.get('exception') == True
             if expect_success:
                 if exit_code != 0:
                     divergences.append({
@@ -58,11 +59,11 @@ class TestRunner:
                         'expected': f'Exit 0, output: {test.get("output", "")}',
                         'actual': f'Exit {exit_code}, stderr: {stderr}'
                     })
-                elif 'output' in test and test['output'].strip() != stdout:
+                elif 'output' in test and ('\n').join(test['output']) != stdout:
                     divergences.append({
                         'index': test.get('index', idx+1),
                         'name': test['name'],
-                        'expected': test['output'].strip(),
+                        'expected': ('\n').join(test['output']),
                         'actual': stdout
                     })
             elif expect_fail:
@@ -70,16 +71,16 @@ class TestRunner:
                     divergences.append({
                         'index': test.get('index', idx+1),
                         'name': test['name'],
-                        'expected': f'Exception: {test.get("exception")}',
+                        'expected': f'Exception',
                         'actual': f'Exit 0, output: {stdout}'
                     })
-                elif test.get('exception') and test.get('exception') not in [None, 'None'] and test.get('exception') not in stderr:
-                    divergences.append({
-                        'index': test.get('index', idx+1),
-                        'name': test['name'],
-                        'expected': f'Exception: {test.get("exception")}',
-                        'actual': f'Exception: {stderr}'
-                    })
+                # elif test.get('exception') and test.get('exception') not in [None, 'None'] and test.get('exception') not in stderr:
+                #     divergences.append({
+                #         'index': test.get('index', idx+1),
+                #         'name': test['name'],
+                #         'expected': f'Exception: {test.get("exception")}',
+                #         'actual': f'Exception: {stderr}'
+                #     })
             else:
                 divergences.append({
                     'index': test.get('index', idx+1),
@@ -92,9 +93,10 @@ class TestRunner:
         if not divergences:
             return ""
         # Format as GitHub issue markdown
-        issue = ["## Test Divergences Found\n"]
-        issue.append("| Test # | Name    | Expected | Actual |")
-        issue.append("|--------|---------|----------|--------|")
+        issue = []
+        #issue = ["## Test Divergences Found\n"]
+        #issue.append("| Test # | Name    | Expected | Actual |")
+        #issue.append("|--------|---------|----------|--------|")
         for d in divergences:
-            issue.append(f"| {d['index']} | {d['name']} | {d['expected']} | {d['actual']} |")
+            issue.append(f"Test {d['index']} | Description: {d['name']}\nExpected: {d['expected']}\nResult: {d['actual']}\n")
         return "\n".join(issue) 

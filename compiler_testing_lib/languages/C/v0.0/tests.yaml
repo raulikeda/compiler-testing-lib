@@ -1,0 +1,99 @@
+tests:
+- index: 1
+  name: test001
+  description: Valid Input
+  input: []
+  output:
+  - '316'
+  exception: false
+- index: 2
+  name: test002
+  description: Starting with Operator +
+  input: []
+  output:
+  - Unexpected token PLUS (expected INT)
+  exception: true
+- index: 3
+  name: test003
+  description: Starting with Operator -
+  input: []
+  output:
+  - Unexpected token MINUS (expected INT)
+  exception: true
+- index: 4
+  name: test004
+  description: Missing Number After +
+  input: []
+  output:
+  - Unexpected token EOF (expected INT)
+  exception: true
+- index: 5
+  name: test005
+  description: Missing Number After -
+  input: []
+  output:
+  - Unexpected token EOF (expected INT)
+  exception: true
+- index: 6
+  name: test006
+  description: Two Consecultives Operators ++
+  input: []
+  output:
+  - Unexpected token PLUS (expected INT)
+  exception: true
+- index: 7
+  name: test007
+  description: Two Consecultives Operators +-
+  input: []
+  output:
+  - Unexpected token MINUS (expected INT)
+  exception: true
+- index: 8
+  name: test008
+  description: Two Consecultives Operators -+
+  input: []
+  output:
+  - Unexpected token PLUS (expected INT)
+  exception: true
+- index: 9
+  name: test009
+  description: Two Consecultives Operators --
+  input: []
+  output:
+  - Unexpected token MINUS (expected INT)
+  exception: true
+- index: 10
+  name: test010
+  description: Empty Input
+  input: []
+  output:
+  - Unexpected token EOF (expected INT)
+  exception: true
+- index: 11
+  name: test011
+  description: Only Operator +
+  input: []
+  output:
+  - Unexpected token PLUS (expected INT)
+  exception: true
+- index: 12
+  name: test012
+  description: Only Operator -
+  input: []
+  output:
+  - Unexpected token MINUS (expected INT)
+  exception: true
+- index: 13
+  name: test013
+  description: No Operator
+  input: []
+  output:
+  - Unexpected token INT (expected EOF)
+  exception: true
+- index: 14
+  name: test014
+  description: Invalid Token
+  input: []
+  output:
+  - Invalid token ,
+  exception: true

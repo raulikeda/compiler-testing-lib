@@ -2,17 +2,16 @@ tests:
   - index: 1
     name: test001
     description: Check if 7 is a prime number using Python.
-    input: [7]
-    result: true
-    output: |
-      True
-    exception: None
-
+    input: 
+      - '7'
+    output:
+      - 'True'
+    exception: false
   - index: 2
     name: test002
     description: Check if 10 is a prime number using Python, but should raise an exception.
-    input: [10]
-    result: false
-    output: |
-      The input value 10 should raise an exception.
-    exception: Exception raised 
+    input: 
+      - '10'
+    output:
+      - 'The input value 10 should raise an exception.'
+    exception: true

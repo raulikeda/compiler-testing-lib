@@ -8,4 +8,4 @@ def is_prime(n):
     return True
 
 # Function call for demonstration
-print(is_prime(7))
+print(is_prime(int(input())))

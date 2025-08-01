@@ -8,6 +8,10 @@ test.sh
 # C extensions
 *.so
 
+compiler_testing_lib/languages/*
+!compiler_testing_lib/languages/C
+!compiler_testing_lib/languages/python
+
 # Distribution / packaging
 .Python
 build/

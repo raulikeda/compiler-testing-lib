@@ -1,8 +1,8 @@
 {
   // Unexpected EOF (Missing CLOSE_BRA)
-  v = 1;
-  if (v == 1) {
-    v = 2;
+  int b = 1;
+  if (b == 1) {
+    b = 2;
   } else {
-    v = 3;
+    b = 3;
 }

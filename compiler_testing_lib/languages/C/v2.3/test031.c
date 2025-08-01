@@ -1,3 +1,3 @@
-{
+void main() {
   // Unexpected token EOF (expected CLOSE_BRA)
-  int j = 4;
+  int s = 9;

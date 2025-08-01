@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token DIV
-  int f = /;
+  int r = /;
 }

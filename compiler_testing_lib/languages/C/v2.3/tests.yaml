@@ -5,7 +5,10 @@ tests:
   input:
   - '3'
   output:
-  - '3'
+  - '2'
+  - '24'
+  - '8'
+  - '9'
   - '0'
   - '1'
   - '6'
@@ -18,13 +21,14 @@ tests:
   - 'false'
   - 'true'
   - abcdef
+  - abc
   - abc1
   - 1abc
   - abctrue
   - 'true'
   - 'true'
   - 'false'
-  exception: false
+  exception: true
 - index: 2
   name: test002
   description: Missing Expression After +
@@ -72,7 +76,7 @@ tests:
   description: Invalid Token
   input: []
   output:
-  - Invalid token ,
+  - Invalid token @
   exception: true
 - index: 9
   name: test009
@@ -247,7 +251,7 @@ tests:
   description: Extra nested {}
   input: []
   output:
-  - // Unexpected token OPEN_BRA
+  - // Unexpected token FUNC or OPEN_PAR
   exception: true
 - index: 34
   name: test034
@@ -671,4 +675,81 @@ tests:
   input: []
   output:
   - Incompatible Type
+  exception: true
+- index: 94
+  name: test094
+  description: Missing function type
+  input: []
+  output:
+  - Missing function type
+  exception: true
+- index: 95
+  name: test095
+  description: Missing function main
+  input: []
+  output:
+  - Missing function main
+  exception: true
+- index: 96
+  name: test096
+  description: Missing second arg
+  input: []
+  output:
+  - Missing second arg
+  exception: true
+- index: 97
+  name: test097
+  description: Missing second arg
+  input: []
+  output:
+  - Missing second arg
+  exception: true
+- index: 98
+  name: test098
+  description: Number of args wrong
+  input: []
+  output:
+  - Number of args wrong
+  exception: true
+- index: 99
+  name: test099
+  description: Number of args wrong
+  input: []
+  output:
+  - Number of args wrong
+  exception: true
+- index: 100
+  name: test100
+  description: Wrong arg type
+  input: []
+  output:
+  - Wrong arg type
+  exception: true
+- index: 101
+  name: test101
+  description: Wrong func return type
+  input: []
+  output:
+  - Wrong func return type
+  exception: true
+- index: 102
+  name: test102
+  description: Function not found
+  input: []
+  output:
+  - Function not found
+  exception: true
+- index: 103
+  name: test103
+  description: Function not found
+  input: []
+  output:
+  - Function not found
+  exception: true
+- index: 104
+  name: test104
+  description: Var out of scope
+  input: []
+  output:
+  - Function not found
   exception: true

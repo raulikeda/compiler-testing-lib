@@ -1,7 +1,7 @@
 {
   // Missing Right Expression
-  o = 1;
+  int r = 1;
   if (!) {
-    o = 2;
+    r = 2;
   }
 }

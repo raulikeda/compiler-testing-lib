@@ -1,7 +1,7 @@
-{
+void main() {
   // Missing OPEN_BRA
-  int x = 1;
-  while (x == 1)
-    x = 2;
+  int t = 1;
+  while (t == 1)
+    t = 2;
   }
 }

@@ -1,4 +1,4 @@
 {
   // Missing CLOSE_PAR
-  t = (9;
+  x = (2;
 }

@@ -1,4 +1,4 @@
 {
   // Missing CLOSE_PAR
-  s = ((3);
+  int n = ((9);
 }

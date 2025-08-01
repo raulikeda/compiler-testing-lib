@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token INT (expected EOL)
-  int k = 8 6;
+  int r = 2 9;
 }

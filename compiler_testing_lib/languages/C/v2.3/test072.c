@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  bool p = 8>"a";
+  bool h = 1>"a";
 }

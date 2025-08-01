@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  bool n = !9;
+  bool f = !1;
 }

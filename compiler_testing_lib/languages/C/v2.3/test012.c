@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token EOL
-  int b = 4/;
+  int c = 4/;
 }

@@ -1,6 +1,6 @@
-{
+void main() {
   // Unexpected token OPEN_BRA (expected EOF)
-  int u = 5;
+  int k = 7;
 }
 {
 }

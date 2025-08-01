@@ -10,6 +10,20 @@ tests:
   - '1'
   - '6'
   - '12'
+  - '3'
+  - '1'
+  - '2'
+  - '2'
+  - 'false'
+  - 'false'
+  - 'true'
+  - abcdef
+  - abc1
+  - 1abc
+  - abctrue
+  - 'true'
+  - 'true'
+  - 'false'
   exception: false
 - index: 2
   name: test002
@@ -397,4 +411,264 @@ tests:
   input: []
   output:
   - Missing OPEN_PAR in While
+  exception: true
+- index: 57
+  name: test057
+  description: Incomplete Declaration
+  input: []
+  output:
+  - Unexpected Identifier
+  exception: true
+- index: 58
+  name: test058
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 59
+  name: test059
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 60
+  name: test060
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 61
+  name: test061
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 62
+  name: test062
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 63
+  name: test063
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 64
+  name: test064
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 65
+  name: test065
+  description: Incompatible Types
+  input:
+  - '1'
+  output:
+  - Incompatible types
+  exception: true
+- index: 66
+  name: test066
+  description: Double Declaration
+  input: []
+  output:
+  - Variable Already Declared
+  exception: true
+- index: 67
+  name: test067
+  description: Open String
+  input: []
+  output:
+  - Unexpected EOF
+  exception: true
+- index: 68
+  name: test068
+  description: Wrong True Case
+  input: []
+  output:
+  - Variable not found
+  exception: true
+- index: 69
+  name: test069
+  description: Incompatible Types ==
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 70
+  name: test070
+  description: Incompatible Types ==
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 71
+  name: test071
+  description: Incompatible Types ==
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 72
+  name: test072
+  description: Incompatible Types >
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 73
+  name: test073
+  description: Incompatible Types >
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 74
+  name: test074
+  description: Incompatible Types >
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 75
+  name: test075
+  description: Incompatible Types <
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 76
+  name: test076
+  description: Incompatible Types <
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 77
+  name: test077
+  description: Incompatible Types <
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 78
+  name: test078
+  description: Incompatible Types &&
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 79
+  name: test079
+  description: Incompatible Types ||
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 80
+  name: test080
+  description: Incompatible Types !
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 81
+  name: test081
+  description: Incompatible Types +
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 82
+  name: test082
+  description: Incompatible Types +
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 83
+  name: test083
+  description: Incompatible Types -
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 84
+  name: test084
+  description: Incompatible Types -
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 85
+  name: test085
+  description: Incompatible Types *
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 86
+  name: test086
+  description: Incompatible Types *
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 87
+  name: test087
+  description: Incompatible Types /
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 88
+  name: test088
+  description: Incompatible Types /
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 89
+  name: test089
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 90
+  name: test090
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 91
+  name: test091
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 92
+  name: test092
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible Type
+  exception: true
+- index: 93
+  name: test093
+  description: Incompatible Types 2
+  input: []
+  output:
+  - Incompatible Type
   exception: true

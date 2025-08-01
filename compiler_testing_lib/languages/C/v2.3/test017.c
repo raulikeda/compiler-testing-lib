@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token MULT
-  int w = 7**4;
+  int z = 2**7;
 }

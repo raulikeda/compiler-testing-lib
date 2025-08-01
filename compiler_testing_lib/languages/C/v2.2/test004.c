@@ -1,4 +1,4 @@
 {
   // Unexpected token EOL
-  w = ;
+  int p = ;
 }

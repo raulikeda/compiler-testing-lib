@@ -1,4 +1,4 @@
 {
   // Missing CLOSE_PAR
-  w = scanf(;
+  int y = scanf(;
 }

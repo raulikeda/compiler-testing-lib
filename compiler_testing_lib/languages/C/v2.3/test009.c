@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token MULT
-  int z = *4;
+  int z = *6;
 }

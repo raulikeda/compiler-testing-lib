@@ -1,1 +1,4 @@
-/
+{
+  // Unexpected token DIV
+  q = /;
+}

@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token EOL
-  int q = 8-;
+  int x = 8-;
 }

@@ -1,1 +1,4 @@
-2+*5
+{
+  // Unexpected token MULT
+  f = 3+*2;
+}

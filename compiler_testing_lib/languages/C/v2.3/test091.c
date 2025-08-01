@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  bool d = "a"."b";
+  bool p = "a"."b";
 }

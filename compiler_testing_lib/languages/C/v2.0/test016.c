@@ -1,1 +1,4 @@
-9+/5
+{
+  // Unexpected token DIV
+  q = 9+/1;
+}

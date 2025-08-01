@@ -1,1 +1,4 @@
-8/
+{
+  // Unexpected token EOL
+  e = 6/;
+}

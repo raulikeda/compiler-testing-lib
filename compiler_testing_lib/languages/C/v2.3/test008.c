@@ -1,4 +1,4 @@
-{
-  // Invalid token ,
-  int o = ,;
+void main() {
+  // Invalid token @
+  int y = @;
 }

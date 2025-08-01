@@ -1,7 +1,7 @@
-{
+void main() {
   // Missing Right Expression
-  int q = 1;
-  if (q >) {
-    q = 2;
+  int j = 1;
+  if (j >) {
+    j = 2;
   }
 }

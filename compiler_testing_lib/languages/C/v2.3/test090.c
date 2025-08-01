@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  str g = 4+7;
+  str h = 3+4;
 }

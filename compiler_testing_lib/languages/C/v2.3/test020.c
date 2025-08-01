@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token MULT
-  int x = 6/*8;
+  int d = 9/*6;
 }

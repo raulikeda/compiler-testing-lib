@@ -1,5 +1,5 @@
 {
   // Unexpected token IDEN
-  X = 1;
-  d = 3 X;
+  int L = 1;
+  int j = 3 L;
 }

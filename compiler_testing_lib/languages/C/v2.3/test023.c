@@ -1,4 +1,4 @@
-{
+void main() {
   // Missing CLOSE_PAR
-  int e = ((7);
+  int y = ((7);
 }

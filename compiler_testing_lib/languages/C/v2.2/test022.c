@@ -1,4 +1,4 @@
 {
   // Unexpected token CLOSE_PAR
-  a = 3);
+  int n = 4);
 }

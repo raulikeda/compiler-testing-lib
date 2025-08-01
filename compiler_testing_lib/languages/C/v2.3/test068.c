@@ -1,4 +1,4 @@
-{
+void main() {
   // Variable not found
-  bool d = True;
+  bool r = True;
 }

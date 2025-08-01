@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  int h = true*1;
+  int j = true*1;
 }

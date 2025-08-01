@@ -1,4 +1,4 @@
 {
   // Unexpected token ASSIGN (expected OPEN_PAR)
-  printf = k;
+  printf = c;
 }

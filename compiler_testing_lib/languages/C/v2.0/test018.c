@@ -1,1 +1,4 @@
-2//8
+{
+  // Unexpected token CLOSE_BRA
+  r = //7;
+}

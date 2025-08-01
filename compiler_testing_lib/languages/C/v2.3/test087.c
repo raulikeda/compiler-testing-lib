@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  int r = 8/true;
+  int s = 8/true;
 }

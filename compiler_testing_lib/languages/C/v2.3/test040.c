@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token INT
-  3 = 3 + 8;
+  3 = 4 + 3;
 }

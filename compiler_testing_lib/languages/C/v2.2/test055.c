@@ -1,5 +1,6 @@
 {
   // Missing OPEN_PAR
-  if 1 == 1
-    n = 7;
+  if 1 == 1 {
+    int i = 5;
+  }
 }

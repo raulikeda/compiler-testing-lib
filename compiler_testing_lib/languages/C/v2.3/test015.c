@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token MULT
-  int v = 2+*5;
+  int v = 5+*6;
 }

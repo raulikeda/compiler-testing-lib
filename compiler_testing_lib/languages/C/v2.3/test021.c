@@ -1,4 +1,4 @@
-{
+void main() {
   // Missing CLOSE_PAR
-  int a = (7;
+  int z = (1;
 }

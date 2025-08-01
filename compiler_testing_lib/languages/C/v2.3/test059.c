@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible types
-  int b = "a";
+  int o = "a";
 }

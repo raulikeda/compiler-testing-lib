@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  bool t = "a"&&7;
+  bool u = "a"&&5;
 }

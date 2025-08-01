@@ -1,11 +1,11 @@
-{
+void main() {
   // Unexpected ELSE
-  int s = 1;
-  if (s == 1) {
-    s = 2;
+  int n = 1;
+  if (n == 1) {
+    n = 2;
   } else {
-    s = 3;
+    n = 3;
   } else {
-    s = 4;
+    n = 4;
   }
 }

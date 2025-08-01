@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible types
-  str j = false;
+  str n = false;
 }

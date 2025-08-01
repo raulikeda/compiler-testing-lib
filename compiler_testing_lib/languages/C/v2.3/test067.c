@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected EOF
-  str z = "a;
+  str b = "a;
 }

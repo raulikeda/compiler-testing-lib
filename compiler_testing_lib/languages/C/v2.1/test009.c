@@ -1,4 +1,4 @@
 {
   // Unexpected token MULT
-  p = *4;
+  a = *1;
 }

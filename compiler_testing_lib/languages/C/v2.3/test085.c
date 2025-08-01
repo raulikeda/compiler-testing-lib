@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  int o = 1*true;
+  int z = 1*true;
 }

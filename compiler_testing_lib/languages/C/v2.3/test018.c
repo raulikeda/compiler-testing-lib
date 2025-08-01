@@ -1,4 +1,4 @@
-{
+void main() {
   // Unexpected token CLOSE_BRA
-  int k = //4;
+  int z = //6;
 }

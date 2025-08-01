@@ -1,6 +1,6 @@
 {
   // Unexpected token OPEN_BRA (expected EOF)
-  x = 8;
+  int x = 8;
 }
 {
 }

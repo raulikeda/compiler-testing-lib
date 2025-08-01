@@ -1,4 +1,4 @@
 {
   // Unexpected token INT (expected OPEN_PAR)
-  printf 7);
+  printf 4);
 }

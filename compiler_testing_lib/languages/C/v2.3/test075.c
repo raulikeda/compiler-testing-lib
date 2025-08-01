@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  bool b = 7<"a";
+  bool a = 3<"a";
 }

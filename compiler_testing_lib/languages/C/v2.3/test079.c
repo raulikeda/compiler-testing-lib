@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  bool c = "a"||4;
+  bool w = "a"||9;
 }

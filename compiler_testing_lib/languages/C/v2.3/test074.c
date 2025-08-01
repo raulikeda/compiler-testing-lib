@@ -1,4 +1,4 @@
-{
+void main() {
   // Incompatible Types
-  bool b = "a"<true;
+  bool h = "a"<true;
 }

@@ -1,1 +1,4 @@
-/6
+{
+  // Unexpected token DIV
+  x = /2;
+}

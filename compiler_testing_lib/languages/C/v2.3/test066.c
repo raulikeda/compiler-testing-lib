@@ -1,5 +1,5 @@
-{
+void main() {
   // Variable Already Declared
-  int w;
-  str w;
+  int v;
+  str v;
 }

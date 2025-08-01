@@ -14,8 +14,10 @@ RUN apt-get update && apt-get install -y \
 # Ensure pip is up to date
 RUN python3 -m pip install --upgrade pip
 
-# Always install the latest version of the testing library from PyPI
-RUN pip install --no-cache-dir --upgrade compiler-testing-lib requests
+# Copy the entire project and install from local source
+COPY . /tmp/compiler-testing-lib
+RUN pip install -e /tmp/compiler-testing-lib
+RUN pip install --no-cache-dir --upgrade requests
 
 # Copy the run script
 COPY images/python/run_in_container.py ./run_in_container.py

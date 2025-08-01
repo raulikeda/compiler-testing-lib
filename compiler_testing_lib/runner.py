@@ -41,6 +41,8 @@ class TestRunner:
                 divergences.append({
                     'index': test.get('index', idx+1),
                     'name': test['name'],
+                    'code': code,
+                    'input': input_values,
                     'expected': 'Complete within timeout',
                     'actual': f'Timeout after {self.timeout} seconds'
                 })
@@ -49,6 +51,8 @@ class TestRunner:
                 divergences.append({
                     'index': test.get('index', idx+1),
                     'name': test['name'],
+                    'code': code,
+                    'input': input_values,
                     'expected': 'No generic exception during subprocess',
                     'actual': f'Exception: {str(e)}'
                 })
@@ -60,6 +64,8 @@ class TestRunner:
                     divergences.append({
                         'index': test.get('index', idx+1),
                         'name': test['name'],
+                        'code': code,
+                        'input': input_values,
                         'expected': f'Exit 0, output: {test.get("output", "")}',
                         'actual': f'Exit {exit_code}, stderr: {stderr}'
                     })
@@ -67,6 +73,8 @@ class TestRunner:
                     divergences.append({
                         'index': test.get('index', idx+1),
                         'name': test['name'],
+                        'code': code,
+                        'input': input_values,
                         'expected': ('\n').join(test['output']),
                         'actual': stdout
                     })
@@ -75,6 +83,8 @@ class TestRunner:
                     divergences.append({
                         'index': test.get('index', idx+1),
                         'name': test['name'],
+                        'code': code,
+                        'input': input_values,
                         'expected': f'Exception',
                         'actual': f'Exit 0, output: {stdout}'
                     })
@@ -89,6 +99,8 @@ class TestRunner:
                 divergences.append({
                     'index': test.get('index', idx+1),
                     'name': test['name'],
+                    'code': code,
+                    'input': input_values,
                     'expected': f"Valid 'result' field (true/false)",
                     'actual': test.get('result')
                 })
@@ -102,5 +114,10 @@ class TestRunner:
         #issue.append("| Test # | Name    | Expected | Actual |")
         #issue.append("|--------|---------|----------|--------|")
         for d in divergences:
-            issue.append(f"Test {d['index']} | Description: {d['name']}\nExpected: {d['expected']}\nResult: {d['actual']}\n")
-        return "\n".join(issue) 
+            message = f"Test {d['index']} - Description: {d['name']}\nTest code:\n```{d['code']}```"
+            if d['input'] != '':
+                message += f"\nInput:`{d['input']}`"
+            message += f"\n\nExpected: {d['expected']}\nResult: {d['actual']}\n"
+
+            issue.append(message)
+        return "\n".join(issue)

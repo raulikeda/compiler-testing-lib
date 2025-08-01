@@ -8,3 +8,5 @@ for dir in */ ; do
         docker build --no-cache -t $image_name -f "$dir/Dockerfile" ..
     fi
 done 
+
+docker image prune -f

@@ -27,7 +27,7 @@ class TestRunner:
         for idx, test in enumerate(self.tests):
             test_file = os.path.join(self.base_path, f"{test['name']}.{self.file_extension}")
             command = f"{command_template} {test_file}"
-            if self.version in ['v0.0', 'v1.0', 'v1.1', 'v2.0']:
+            if self.version in ['v0.0', 'v1.0', 'v1.1', 'v1.2']:
                 with open(test_file, 'r') as f:
                     code = f.read()
                 command = f"{command_template} '{code}'"

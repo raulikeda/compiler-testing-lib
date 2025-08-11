@@ -27,15 +27,15 @@ class TestRunner:
         for idx, test in enumerate(self.tests):
             
             # O code não estava sendo declarado em versões acima de v1.2, então foi movido para fora do if
+            test_file = os.path.join(self.base_path, f"{test['name']}.{self.file_extension}")
             with open(test_file, 'r') as f:
                 code = f.read()
             
             # command = f"{command_template} {test_file}"
             # if self.version in ['v0.0', 'v1.0', 'v1.1', 'v1.2']:
             #     command = f"{command_template} '{code}'"
-
-            test_file = os.path.join(self.base_path, f"{test['name']}.{self.file_extension}")
-            command = f"{command_template} {test_file}"
+            
+            command = f"{command_template} {'test_file'}"
             if self.version in ['v0.0', 'v1.0', 'v1.1', 'v1.2']:
                 # with open(test_file, 'r') as f:
                 #     code = f.read()

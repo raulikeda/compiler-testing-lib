@@ -36,16 +36,17 @@ RUN pip install -e /tmp/compiler-testing-lib
 RUN pip install --no-cache-dir --upgrade requests
 
 # Supress welcome message from .NET
-ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
-ENV DOTNET_NOLOGO=1
-ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
-
+RUN echo 'DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1' >> /etc/environment && \
+    echo 'DOTNET_NOLOGO=1' >> /etc/environment && \
+    echo 'DOTNET_CLI_TELEMETRY_OPTOUT=1' >> /etc/environment
 
 # Copy the run script
 COPY images/python/run_in_container.py ./run_in_container.py
 
 # Verify the installation
 RUN pip list | grep compiler-testing-lib
+
+RUN dotnet --info
 
 # Default workdir for mapped source
 WORKDIR /src

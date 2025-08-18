@@ -35,6 +35,12 @@ COPY . /tmp/compiler-testing-lib
 RUN pip install -e /tmp/compiler-testing-lib
 RUN pip install --no-cache-dir --upgrade requests
 
+# Supress welcome message from .NET
+ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+ENV DOTNET_NOLOGO=1
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+
 # Copy the run script
 COPY images/python/run_in_container.py ./run_in_container.py
 

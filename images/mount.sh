@@ -2,11 +2,10 @@
 set -e
 
 for dir in */ ; do
-    if [ -f "$dir/Dockerfile" ]; then
-        image_name="compiler-testing-lib-$dir:latest"
-        echo "Building $image_name from $dir/Dockerfile..."
-        docker build --no-cache -t $image_name -f "$dir/Dockerfile" ..
+    if [ -f "${dir%/}/Dockerfile" ]; then
+        image_name="compiler-testing-lib-${dir%/}:latest"
+        echo "Building $image_name from ${dir%/}/Dockerfile..."
+        docker build --no-cache -t $image_name -f "${dir%/}/Dockerfile" ..
+        docker image prune -f
     fi
 done 
-
-docker image prune -f

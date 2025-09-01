@@ -5,7 +5,7 @@ docker run --rm -it \
   compiler-testing-lib-python \
   --git_username raulikeda \
   --git_repository compiler-testing-example \
-  --language python \
+  --language Python \
   --version v0.0 \
   --file_extension py \
   --max_errors 3 \

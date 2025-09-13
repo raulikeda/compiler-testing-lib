@@ -1,4 +1,2 @@
-{
-  // Incompatible types
-  int f = true;
-}
+// Incompatible types
+str s = 3;

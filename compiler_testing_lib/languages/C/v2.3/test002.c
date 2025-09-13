@@ -1,4 +1,4 @@
 void main() {
   // Unexpected token EOL
-  int p = 6+;
+  int o = 4+;
 }

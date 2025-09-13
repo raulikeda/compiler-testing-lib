@@ -1,7 +1,4 @@
-{
-  // Missing Right Expression
-  int v = 1;
-  if (v <) {
-    v = 2;
-  }
+// Missing OPEN_PAR
+while 1 == 1 {
+  int y = 6;
 }

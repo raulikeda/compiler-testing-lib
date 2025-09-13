@@ -1,10 +1,5 @@
-{
-  // Unexpected OPEN_BRA
-  int z = 1;
-  if (z == 1) {
-    z = 2;
-  }
-  {
-    z = 3;
-  }
+// Missing Right Expression
+int n = 1;
+if (!) {
+  n = 2;
 }

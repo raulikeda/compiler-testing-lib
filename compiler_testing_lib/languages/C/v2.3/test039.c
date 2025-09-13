@@ -1,4 +1,4 @@
 void main() {
-  // Unexpected token EOL (expected CLOSE_PAR)
-  printf(3//);
+  // Unexpected token INT
+  3 = 5 + 4;
 }

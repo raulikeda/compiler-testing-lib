@@ -1,7 +1,7 @@
-int test(int x) {
+int test(bool x) {
   return x;
 }
 void main() {
-  // Number of args wrong
-  printf(test(4, 1));
+  // Wrong func return type
+  printf(test(true));
 }

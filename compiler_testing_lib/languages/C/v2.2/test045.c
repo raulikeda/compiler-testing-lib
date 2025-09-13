@@ -1,6 +1,5 @@
-{
-  // Unexpected EOF (Missing CLOSE_BRA)
-  int f = 1;
-  while (f == 1) {
-    f = 2;
+// Missing Right Expression
+int e = 1;
+if (e >) {
+  e = 2;
 }

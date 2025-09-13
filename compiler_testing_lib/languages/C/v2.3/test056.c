@@ -1,6 +1,4 @@
 void main() {
-  // Missing OPEN_PAR
-  while 1 == 1 {
-    int s = 7;
-  }
+  // Incompatible types
+  int o = true;
 }

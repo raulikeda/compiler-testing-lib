@@ -1,7 +1,4 @@
-{
-  // Missing Right Expression
-  int o = 1;
-  if (o >) {
-    o = 2;
-  }
+// Missing OPEN_PAR
+if 1 == 1 {
+  int s = 2;
 }

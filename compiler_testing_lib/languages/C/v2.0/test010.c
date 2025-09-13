@@ -1,4 +1,2 @@
-{
-  // Unexpected token DIV
-  x = /2;
-}
+// Unexpected token DIV
+y = /5;

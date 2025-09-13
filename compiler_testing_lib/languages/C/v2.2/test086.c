@@ -1,4 +1,2 @@
-{
-  // Incompatible Types
-  int a = true*1;
-}
+// Incompatible Types
+bool j = "a"."b";

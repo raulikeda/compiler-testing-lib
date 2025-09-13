@@ -1,4 +1,2 @@
-{
-  // Unexpected token MULT
-  w = 2/*7;
-}
+// Unexpected token MULT
+e = 3/*5;

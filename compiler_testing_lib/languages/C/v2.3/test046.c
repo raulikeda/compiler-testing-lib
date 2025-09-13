@@ -1,7 +1,11 @@
 void main() {
-  // Missing OPEN_BRA
-  int t = 1;
-  while (t == 1)
-    t = 2;
+  // Unexpected ELSE
+  int f = 1;
+  if (f == 1) {
+    f = 2;
+  } else {
+    f = 3;
+  } else {
+    f = 4;
   }
 }

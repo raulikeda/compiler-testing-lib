@@ -1,4 +1,4 @@
 void main() {
   // Unexpected token CLOSE_BRA
-  int z = //6;
+  int e = //9;
 }

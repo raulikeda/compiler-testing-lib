@@ -1,6 +1,6 @@
 void main() {
-  // Unexpected token OPEN_BRA (expected EOF)
-  int k = 7;
-}
-{
+  void main() {
+    // Unexpected token FUNC or OPEN_PAR
+    int q = 2;
+  }
 }

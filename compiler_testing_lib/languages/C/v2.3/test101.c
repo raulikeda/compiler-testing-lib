@@ -1,7 +1,5 @@
-int test(bool x) {
-  return x;
-}
+int e = 6;
 void main() {
-  // Wrong func return type
-  printf(test(true));
+  // Function not found
+  printf(e(8));
 }

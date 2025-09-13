@@ -1,4 +1,2 @@
-{
-  // Incompatible Types
-  int d = 1*true;
-}
+// Incompatible Types
+str o = 5+7;

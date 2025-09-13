@@ -1,8 +1,9 @@
-{
-  // Unexpected EOF (Missing CLOSE_BRA)
-  int b = 1;
-  if (b == 1) {
-    b = 2;
-  } else {
-    b = 3;
+// Unexpected ELSE
+int d = 1;
+if (d == 1) {
+  d = 2;
+} else {
+  d = 3;
+} else {
+  d = 4;
 }

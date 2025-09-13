@@ -1,4 +1,2 @@
-{
-  // Missing CLOSE_PAR
-  int y = scanf(;
-}
+// Incompatible types
+int g = "a";

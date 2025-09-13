@@ -1,4 +1,2 @@
-{
-  // Incompatible Types
-  int t = 1+true;
-}
+// Incompatible Types
+int p = true*1;

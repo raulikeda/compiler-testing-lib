@@ -1,4 +1,4 @@
-{
+{ // Teste geral
   x_1 = scanf();
   
   printf(x_1);
@@ -29,10 +29,9 @@
   }
   
   
-  ;;;
+  ;;; {{ }} // Teste de colchetes
   // Saida final
   printf(x_1);
   printf(x);
   printf(z__+1);
-  
-}
+} // Teste do filter

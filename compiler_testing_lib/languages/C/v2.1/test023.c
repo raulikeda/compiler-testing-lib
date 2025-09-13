@@ -1,4 +1,2 @@
-{
-  // Missing CLOSE_PAR
-  e = ((6);
-}
+// Missing CLOSE_PAR
+z = ((2);

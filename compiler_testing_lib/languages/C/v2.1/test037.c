@@ -1,5 +1,3 @@
-{
-  // Unexpected token IDEN
-  1x = 5;
-  printf(1x);
-}
+// Unexpected EOF (Missing CLOSE_BRA)
+o = 1;
+if (o == 1) {

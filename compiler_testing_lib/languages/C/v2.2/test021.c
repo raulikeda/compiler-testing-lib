@@ -1,4 +1,2 @@
-{
-  // Missing CLOSE_PAR
-  int x = (2;
-}
+// Missing CLOSE_PAR
+int n = (5;

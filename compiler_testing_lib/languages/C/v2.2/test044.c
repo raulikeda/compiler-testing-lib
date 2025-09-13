@@ -1,9 +1,5 @@
-{
-  // Missing OPEN_BRA
-  int f = 1;
-  if (f == 1) {
-    f = 2;
-  } else
-    f = 3;
-  }
+// Missing Right Expression
+int y = 1;
+if (y ==) {
+  y = 2;
 }

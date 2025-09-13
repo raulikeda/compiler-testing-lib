@@ -1,5 +1,3 @@
-{
-  // Unexpected token IDEN
-  int 1x = 7;
-  printf(1x);
-}
+// Unexpected EOF (Missing CLOSE_BRA)
+int y = 1;
+if (y == 1) {

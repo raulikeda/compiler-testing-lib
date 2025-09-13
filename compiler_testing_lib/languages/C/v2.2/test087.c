@@ -1,4 +1,3 @@
-{
-  // Incompatible Types
-  int u = 7/true;
+// Incompatible Types
+if (1+1) {
 }

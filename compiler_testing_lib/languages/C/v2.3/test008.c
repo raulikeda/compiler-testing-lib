@@ -1,4 +1,4 @@
 void main() {
   // Invalid token @
-  int y = @;
+  int o = @;
 }

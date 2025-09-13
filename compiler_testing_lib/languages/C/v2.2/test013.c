@@ -1,4 +1,2 @@
-{
-  // Unexpected token MULT
-  int r = *;
-}
+// Unexpected token MULT
+int w = *;

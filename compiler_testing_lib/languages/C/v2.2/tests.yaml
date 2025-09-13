@@ -237,187 +237,187 @@ tests:
   exception: true
 - index: 32
   name: test032
-  description: Extra {}
-  input: []
-  output:
-  - // Unexpected token OPEN_BRA (expected EOF)
-  exception: true
-- index: 33
-  name: test033
-  description: Extra nested {}
-  input: []
-  output:
-  - // Unexpected token OPEN_BRA
-  exception: true
-- index: 34
-  name: test034
   description: Extra }
   input: []
   output:
   - Unexpected token CLOSE_BRA (expected EOF)
   exception: true
-- index: 35
-  name: test035
-  description: Missing {}
-  input: []
-  output:
-  - Unexpected token IDEN (expected OPEN_BRA)
-  exception: true
-- index: 36
-  name: test036
-  description: Missing {}
-  input: []
-  output:
-  - Unexpected token EOF (expected OPEN_BRA)
-  exception: true
-- index: 37
-  name: test037
+- index: 33
+  name: test033
   description: Invalid Identifier Name
   input: []
   output:
   - Unexpected token IDEN
   exception: true
-- index: 38
-  name: test038
+- index: 34
+  name: test034
   description: Use Print as Identifier
   input: []
   output:
   - Unexpected token ASSIGN (expected OPEN_PAR)
   exception: true
-- index: 39
-  name: test039
+- index: 35
+  name: test035
   description: Missing )
   input: []
   output:
   - Unexpected token EOL (expected CLOSE_PAR)
   exception: true
-- index: 40
-  name: test040
+- index: 36
+  name: test036
   description: Use Number as Identifier
   input: []
   output:
   - Unexpected token INT
   exception: true
-- index: 41
-  name: test041
+- index: 37
+  name: test037
   description: If without }
   input: []
   output:
   - Missing CLOSE_BRA
   exception: true
+- index: 38
+  name: test038
+  description: If without {
+  input: []
+  output:
+  - Missing OPEN_BRA
+  exception: true
+- index: 39
+  name: test039
+  description: Else without }
+  input: []
+  output:
+  - Missing CLOSE_BRA
+  exception: true
+- index: 40
+  name: test040
+  description: Else without {
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
+- index: 41
+  name: test041
+  description: While without }
+  input: []
+  output:
+  - Unexpected token EOF
+  exception: true
 - index: 42
   name: test042
-  description: If without {
+  description: While without {
   input: []
   output:
   - Missing OPEN_BRA
   exception: true
 - index: 43
   name: test043
-  description: Else without }
-  input: []
-  output:
-  - Missing CLOSE_BRA
-  exception: true
-- index: 44
-  name: test044
-  description: Else without {
-  input: []
-  output:
-  - Unexpected token EOF
-  exception: true
-- index: 45
-  name: test045
-  description: While without }
-  input: []
-  output:
-  - Unexpected token EOF
-  exception: true
-- index: 46
-  name: test046
-  description: While without {
-  input: []
-  output:
-  - Missing OPEN_BRA
-  exception: true
-- index: 47
-  name: test047
-  description: If with 2 Blocks
-  input: []
-  output:
-  - Unexpected OPEN_BRA
-  exception: true
-- index: 48
-  name: test048
   description: If with 2 Else's
   input: []
   output:
-  - Unexpected OPEN_BRA
+  - Unexpected ELSE
   exception: true
-- index: 49
-  name: test049
+- index: 44
+  name: test044
   description: Missing Equal operand
   input: []
   output:
   - Missing Right Expression
   exception: true
-- index: 50
-  name: test050
+- index: 45
+  name: test045
   description: Missing > operand
   input: []
   output:
   - Missing Right Expression
   exception: true
-- index: 51
-  name: test051
+- index: 46
+  name: test046
   description: Missing < operand
   input: []
   output:
   - Missing Right Expression
   exception: true
-- index: 52
-  name: test052
+- index: 47
+  name: test047
   description: Missing Not operand
   input: []
   output:
   - Missing Right Expression
   exception: true
-- index: 53
-  name: test053
+- index: 48
+  name: test048
   description: Missing Reader (
   input:
   - '1'
   output:
   - Missing OPEN_PAR
   exception: true
-- index: 54
-  name: test054
+- index: 49
+  name: test049
   description: Missing Reader )
   input:
   - '1'
   output:
   - Missing CLOSE_PAR
   exception: true
-- index: 55
-  name: test055
+- index: 50
+  name: test050
   description: If missing PAR
   input: []
   output:
   - Missing OPEN_PAR in If
   exception: true
-- index: 56
-  name: test056
+- index: 51
+  name: test051
   description: While missing PAR
   input: []
   output:
   - Missing OPEN_PAR in While
   exception: true
-- index: 57
-  name: test057
+- index: 52
+  name: test052
   description: Incomplete Declaration
   input: []
   output:
   - Unexpected Identifier
+  exception: true
+- index: 53
+  name: test053
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 54
+  name: test054
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 55
+  name: test055
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 56
+  name: test056
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
+  exception: true
+- index: 57
+  name: test057
+  description: Incompatible Types
+  input: []
+  output:
+  - Incompatible types
   exception: true
 - index: 58
   name: test058
@@ -436,237 +436,202 @@ tests:
 - index: 60
   name: test060
   description: Incompatible Types
-  input: []
-  output:
-  - Incompatible types
-  exception: true
-- index: 61
-  name: test061
-  description: Incompatible Types
-  input: []
-  output:
-  - Incompatible types
-  exception: true
-- index: 62
-  name: test062
-  description: Incompatible Types
-  input: []
-  output:
-  - Incompatible types
-  exception: true
-- index: 63
-  name: test063
-  description: Incompatible Types
-  input: []
-  output:
-  - Incompatible types
-  exception: true
-- index: 64
-  name: test064
-  description: Incompatible Types
-  input: []
-  output:
-  - Incompatible types
-  exception: true
-- index: 65
-  name: test065
-  description: Incompatible Types
   input:
   - '1'
   output:
   - Incompatible types
   exception: true
-- index: 66
-  name: test066
+- index: 61
+  name: test061
   description: Double Declaration
   input: []
   output:
   - Variable Already Declared
   exception: true
-- index: 67
-  name: test067
+- index: 62
+  name: test062
   description: Open String
   input: []
   output:
   - Unexpected EOF
   exception: true
-- index: 68
-  name: test068
+- index: 63
+  name: test063
   description: Wrong True Case
   input: []
   output:
   - Variable not found
   exception: true
+- index: 64
+  name: test064
+  description: Incompatible Types ==
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 65
+  name: test065
+  description: Incompatible Types ==
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 66
+  name: test066
+  description: Incompatible Types ==
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 67
+  name: test067
+  description: Incompatible Types >
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
+- index: 68
+  name: test068
+  description: Incompatible Types >
+  input: []
+  output:
+  - Incompatible Types
+  exception: true
 - index: 69
   name: test069
-  description: Incompatible Types ==
+  description: Incompatible Types >
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 70
   name: test070
-  description: Incompatible Types ==
+  description: Incompatible Types <
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 71
   name: test071
-  description: Incompatible Types ==
+  description: Incompatible Types <
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 72
   name: test072
-  description: Incompatible Types >
+  description: Incompatible Types <
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 73
   name: test073
-  description: Incompatible Types >
+  description: Incompatible Types &&
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 74
   name: test074
-  description: Incompatible Types >
+  description: Incompatible Types ||
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 75
   name: test075
-  description: Incompatible Types <
+  description: Incompatible Types !
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 76
   name: test076
-  description: Incompatible Types <
+  description: Incompatible Types +
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 77
   name: test077
-  description: Incompatible Types <
+  description: Incompatible Types +
   input: []
   output:
   - Incompatible Types
   exception: true
 - index: 78
   name: test078
-  description: Incompatible Types &&
+  description: Incompatible Types -
   input: []
   output:
-  - Incompatible Types
+  - Incompatible Type
   exception: true
 - index: 79
   name: test079
-  description: Incompatible Types ||
+  description: Incompatible Types -
   input: []
   output:
-  - Incompatible Types
+  - Incompatible Type
   exception: true
 - index: 80
   name: test080
-  description: Incompatible Types !
+  description: Incompatible Types *
   input: []
   output:
-  - Incompatible Types
+  - Incompatible Type
   exception: true
 - index: 81
   name: test081
-  description: Incompatible Types +
+  description: Incompatible Types *
   input: []
   output:
-  - Incompatible Types
+  - Incompatible Type
   exception: true
 - index: 82
   name: test082
-  description: Incompatible Types +
+  description: Incompatible Types /
   input: []
   output:
-  - Incompatible Types
+  - Incompatible Type
   exception: true
 - index: 83
   name: test083
-  description: Incompatible Types -
+  description: Incompatible Types /
   input: []
   output:
   - Incompatible Type
   exception: true
 - index: 84
   name: test084
-  description: Incompatible Types -
+  description: Incompatible Types
   input: []
   output:
   - Incompatible Type
   exception: true
 - index: 85
   name: test085
-  description: Incompatible Types *
+  description: Incompatible Types
   input: []
   output:
   - Incompatible Type
   exception: true
 - index: 86
   name: test086
-  description: Incompatible Types *
+  description: Incompatible Types
   input: []
   output:
   - Incompatible Type
   exception: true
 - index: 87
   name: test087
-  description: Incompatible Types /
+  description: Incompatible Types
   input: []
   output:
   - Incompatible Type
   exception: true
 - index: 88
   name: test088
-  description: Incompatible Types /
-  input: []
-  output:
-  - Incompatible Type
-  exception: true
-- index: 89
-  name: test089
-  description: Incompatible Types
-  input: []
-  output:
-  - Incompatible Type
-  exception: true
-- index: 90
-  name: test090
-  description: Incompatible Types
-  input: []
-  output:
-  - Incompatible Type
-  exception: true
-- index: 91
-  name: test091
-  description: Incompatible Types
-  input: []
-  output:
-  - Incompatible Type
-  exception: true
-- index: 92
-  name: test092
-  description: Incompatible Types
-  input: []
-  output:
-  - Incompatible Type
-  exception: true
-- index: 93
-  name: test093
   description: Incompatible Types 2
   input: []
   output:

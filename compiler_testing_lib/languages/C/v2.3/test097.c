@@ -1,7 +1,7 @@
-int test(int x, int y) {
-  return x + y;
+int test(int x) {
+  return x;
 }
 void main() {
-  // Missing second arg
-  printf(test(2, ));
+  // Number of args wrong
+  printf(test(9, 2));
 }

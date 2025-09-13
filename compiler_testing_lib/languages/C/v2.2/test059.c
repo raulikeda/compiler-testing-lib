@@ -1,4 +1,2 @@
-{
-  // Incompatible types
-  int y = "a";
-}
+// Incompatible types
+str b = false;

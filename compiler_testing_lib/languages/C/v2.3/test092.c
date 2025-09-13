@@ -1,5 +1,3 @@
-void main() {
-  // Incompatible Types
-  if (1+1) {
-  }
+main() {
+  // Missing function type
 }

@@ -1,4 +1,4 @@
 void main() {
   // Unexpected token OPEN_PAR (wrong print token)
-  Printf(9);
+  Printf(5);
 }

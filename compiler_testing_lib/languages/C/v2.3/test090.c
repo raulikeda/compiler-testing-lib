@@ -1,4 +1,5 @@
 void main() {
   // Incompatible Types
-  str h = 3+4;
+  if (1+1) {
+  }
 }

@@ -1,5 +1,2 @@
-void main() {
-  // Unexpected token CLOSE_BRA (expected EOF)
-  int m = 7;
-}
-}
+// Unexpected token IDEN (expected OPEN_BRA)
+void main() 

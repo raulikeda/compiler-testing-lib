@@ -1,4 +1,2 @@
-{
-  // Incompatible Types
-  bool o = "a"==true;
-}
+// Incompatible Types
+bool d = true<2;

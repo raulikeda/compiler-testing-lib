@@ -1,6 +1,2 @@
-{
-  {
-    // Unexpected token OPEN_BRA
-    o = 2;
-  }
-}
+// Unexpected token EOL (expected CLOSE_PAR)
+printf(6//);

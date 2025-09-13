@@ -1,7 +1,7 @@
-int test(int x, int y) {
-  return x + y;
+bool test(bool x) {
+  return x;
 }
 void main() {
-  // Missing second arg
-  printf(test(5));
+  // Wrong arg type
+  printf(test(6));
 }

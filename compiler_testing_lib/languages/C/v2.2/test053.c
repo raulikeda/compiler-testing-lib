@@ -1,4 +1,2 @@
-{
-  // Missing OPEN_PAR
-  int k = scanf;
-}
+// Incompatible types
+int u = true;

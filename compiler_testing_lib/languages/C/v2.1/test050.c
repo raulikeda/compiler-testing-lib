@@ -1,7 +1,4 @@
-{
-  // Missing Right Expression
-  d = 1;
-  if (d >) {
-    d = 2;
-  }
+// Missing OPEN_PAR
+if 1 == 1 {
+  o = 8;
 }

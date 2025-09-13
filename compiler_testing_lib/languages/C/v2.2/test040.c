@@ -1,4 +1,7 @@
-{
-  // Unexpected token INT
-  3 = 8 + 6;
+// Missing OPEN_BRA
+int m = 1;
+if (m == 1) {
+  m = 2;
+} else
+  m = 3;
 }

@@ -1,4 +1,2 @@
-{
-  // Unexpected token DIV
-  int k = /3;
-}
+// Unexpected token DIV
+int b = /3;

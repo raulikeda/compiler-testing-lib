@@ -1,5 +1,2 @@
-{
-  // Unexpected token CLOSE_BRA (expected EOF)
-  int s = 7;
-}
-}
+// Unexpected token ASSIGN (expected OPEN_PAR)
+printf = q;

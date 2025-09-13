@@ -1,5 +1,3 @@
-{
-  // Unexpected token IDEN
-  X = 1;
-  h = 9 X;
-}
+// Unexpected token IDEN
+X = 1;
+t = 7 X;

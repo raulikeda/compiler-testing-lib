@@ -1,4 +1,6 @@
 void main() {
-  // Missing CLOSE_PAR
-  int x = scanf(;
+  // Missing OPEN_PAR
+  while 1 == 1 {
+    int n = 6;
+  }
 }

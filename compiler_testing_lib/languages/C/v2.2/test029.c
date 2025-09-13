@@ -1,5 +1,3 @@
-{
-  // Author: Rafael Dourado @rafaeldbo - Mar/2025
-  // Unexpected token INT (expected OPEN_PAR)
-  printf 7;
-}
+// Author: Rafael Dourado @rafaeldbo - Mar/2025
+// Unexpected token INT (expected OPEN_PAR)
+printf 8;

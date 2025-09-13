@@ -1,4 +1,4 @@
 void main() {
   // Incompatible types
-  str f = 9;
+  str v = scanf();
 }

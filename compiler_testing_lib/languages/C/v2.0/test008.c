@@ -1,4 +1,2 @@
-{
-  // Invalid token ,
-  f = ,;
-}
+// Invalid token ,
+z = ,;

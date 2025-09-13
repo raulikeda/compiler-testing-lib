@@ -1,4 +1,4 @@
 void main() {
   // Incompatible types
-  bool m = "a";
+  str z = 4;
 }

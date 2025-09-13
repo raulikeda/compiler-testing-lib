@@ -1,4 +1,2 @@
-{
-  // Unexpected EOF
-  str y = "a;
-}
+// Incompatible Types
+bool v = 8>"a";

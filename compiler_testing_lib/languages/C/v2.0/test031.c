@@ -1,3 +1,3 @@
-{
-  // Unexpected token EOF (expected CLOSE_BRA)
-  f = 8;
+// Unexpected token IDEN
+1x = 7;
+printf(1x);

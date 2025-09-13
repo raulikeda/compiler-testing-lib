@@ -1,4 +1,2 @@
-{
-  // Unexpected token INT (expected EOL)
-  d = 8 1;
-}
+// Unexpected token INT (expected EOL)
+x = 3 5;

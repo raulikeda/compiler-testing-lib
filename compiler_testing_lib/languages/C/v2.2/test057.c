@@ -1,4 +1,2 @@
-{
-  // Unexpected Identifier
-  imt x1 = 8;
-}
+// Incompatible types
+bool r = 2;

@@ -1,4 +1,2 @@
-{
-  // Unexpected token CLOSE_PAR
-  int n = 4);
-}
+// Unexpected token CLOSE_PAR
+int n = 5);

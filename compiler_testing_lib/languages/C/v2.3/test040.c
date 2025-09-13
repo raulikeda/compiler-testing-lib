@@ -1,4 +1,5 @@
 void main() {
-  // Unexpected token INT
-  3 = 4 + 3;
+  // Unexpected EOF (Missing CLOSE_BRA)
+  int u = 1;
+  if (u == 1) {
 }

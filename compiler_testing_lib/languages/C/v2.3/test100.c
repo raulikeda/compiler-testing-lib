@@ -1,7 +1,7 @@
-bool test(bool x) {
+int test(int x) {
   return x;
 }
 void main() {
-  // Wrong arg type
-  printf(test(3));
+  // Function not found
+  printf(Test(3));
 }

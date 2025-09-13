@@ -1,4 +1,2 @@
-{
-  // Incompatible Types
-  bool q = 5>"a";
-}
+// Incompatible Types
+bool b = "a"<true;

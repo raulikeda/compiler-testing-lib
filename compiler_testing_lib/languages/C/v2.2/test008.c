@@ -1,4 +1,2 @@
-{
-  // Invalid token ,
-  int j = ,;
-}
+// Invalid token ,
+int g = ,;

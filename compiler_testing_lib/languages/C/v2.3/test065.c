@@ -1,4 +1,4 @@
 void main() {
-  // Incompatible types
-  str s = scanf();
+  // Unexpected EOF
+  str h = "a;
 }

@@ -1,4 +1,5 @@
 void main() {
-  // Incompatible Types
-  bool p = "a"."b";
+  // Incompatible Types 2
+  while (0+0) {
+  }
 }

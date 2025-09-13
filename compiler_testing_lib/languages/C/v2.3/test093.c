@@ -1,5 +1,3 @@
-void main() {
-  // Incompatible Types 2
-  while (0+0) {
-  }
+void Main() {
+  // Missing function main
 }

@@ -1,5 +1,2 @@
-{
-  // Unexpected token CLOSE_BRA (expected EOF)
-  w = 5;
-}
-}
+// Unexpected token INT
+3 = 2 + 6;

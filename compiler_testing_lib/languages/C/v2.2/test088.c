@@ -1,4 +1,3 @@
-{
-  // Incompatible Types
-  int p = true/1;
+// Incompatible Types 2
+while (0+0) {
 }

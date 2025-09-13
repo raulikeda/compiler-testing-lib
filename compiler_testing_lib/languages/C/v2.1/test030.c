@@ -1,5 +1,3 @@
-{
-  // Identifier not found
-  x1 = 5;
-  printf(X1);
-}
+// Identifier not found
+x1 = 9;
+printf(X1);

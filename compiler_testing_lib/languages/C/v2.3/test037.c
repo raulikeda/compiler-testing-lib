@@ -1,5 +1,4 @@
 void main() {
-  // Unexpected token IDEN
-  int 1x = 5;
-  printf(1x);
+  // Unexpected token ASSIGN (expected OPEN_PAR)
+  printf = z;
 }

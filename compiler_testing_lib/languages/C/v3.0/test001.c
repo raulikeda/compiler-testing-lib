@@ -1,33 +1,15 @@
-int A = 2;
-void myprint(str text) {
-  printf(text);
-}
-
-int fac(int x) {
-  if (x == 1) {
-    return 1;
-  }
-  return x * fac(x-1);
-}
-int sum(int x, int y) {
-  return x + y;
-}
-
-bool tautology() {
-  return true;
-}
-
-void main() {
+{ // Teste geral
+  int A = 2;
   int x_1;
-  x_1 = scanf();
-  int x_2 = fac(4);
+  x_1 = 3;
+  int x_2 = 4*3*2*1;
   printf(A); 
   printf(x_2);
   {
     int x_2 = 7;
     x_1 = 9;
     A = 8;
-    printf(x_2);
+    ;
   }
   printf(A);
   printf(x_1);
@@ -38,7 +20,7 @@ void main() {
   
   int x = 3+6/3   *  2 -+-  +  2*4/2 + 0/1 -((6+ ((4)))/(2)); // Teste // Teste 2
   int y_1 = 3;
-  y_1 = sum(y_1, x_1);
+  y_1 = y_1 + x_1;
   int z__;
   z__ = x + y_1;
   
@@ -56,6 +38,11 @@ void main() {
   while (x_1 < 1 || x == 2) {
     printf(x_1);
     x_1 = x_1 + 1;
+    if (x_1 == 3) {
+      x_1 = 2;
+    } else {
+      x_1 = 3;
+    }
   }
   
   
@@ -77,22 +64,4 @@ void main() {
   printf(y < z);
   printf(y > z);
   
-  // All str operations 
-  str a;
-  str b;
-  
-  x_1 = 1;
-  y = 1; 
-  z = 2;
-  a = "abc";
-  b = "def";
-  myprint(a.b);
-  myprint(a);
-  printf(a.x_1);
-  printf(x_1.a);
-  printf(a.(x_1==1));
-  printf(a == a);
-  printf(a < b);
-  printf(a > b);
-}
- // Teste do filter
+} // Teste do filter

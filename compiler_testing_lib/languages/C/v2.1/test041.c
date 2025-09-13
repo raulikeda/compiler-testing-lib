@@ -1,5 +1,4 @@
-{
-  // Unexpected EOF (Missing CLOSE_BRA)
-  q = 1;
-  if (q == 1) {
-}
+// Unexpected EOF (Missing CLOSE_BRA)
+n = 1;
+while (n == 1) {
+  n = 2;

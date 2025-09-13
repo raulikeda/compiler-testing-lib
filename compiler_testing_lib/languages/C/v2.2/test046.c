@@ -1,7 +1,5 @@
-{
-  // Missing OPEN_BRA
-  int z = 1;
-  while (z == 1)
-    z = 2;
-  }
+// Missing Right Expression
+int k = 1;
+if (k <) {
+  k = 2;
 }

@@ -1,4 +1,2 @@
-{
-  // Incompatible types
-  bool t = 3;
-}
+// Incompatible types
+str s = scanf();

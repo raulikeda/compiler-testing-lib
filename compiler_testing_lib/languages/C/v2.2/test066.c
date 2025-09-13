@@ -1,5 +1,2 @@
-{
-  // Variable Already Declared
-  int n;
-  str n;
-}
+// Incompatible Types
+bool v = "a"==true;

@@ -5,7 +5,8 @@ WORKDIR /app
 # Install Node.js (LTS) via NodeSource
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt-get install -y nodejs \
-    && npm install -g npm@latest
+    && npm install -g npm@latest \
+    && npm i syncprompt
 
 # Verify installation
 RUN python3 -V && node --version && npm --version

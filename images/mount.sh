@@ -14,6 +14,9 @@ for dir in */ ; do
     if [ "$name" = "python" ]; then
         continue
     fi
+    if [ "$name" = "ocaml" ]; then
+        continue
+    fi
     if [ -f "${name}/Dockerfile" ]; then
         image_name="compiler-testing-lib-${name}:latest"
         echo "Building $image_name from ${name}/Dockerfile..."

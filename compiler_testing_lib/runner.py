@@ -79,7 +79,8 @@ class TestRunner:
                             build_cmd = asm_build_template.format(asm_file=asm_file, exe_file=exe_file, base_name=base_name, dir=dir_name)
                         else:
                             # Generic default: use gcc to assemble (assumes GAS syntax)
-                            build_cmd = f"gcc -x assembler {asm_file} -o {exe_file}"
+                            build_cmd = f"nasm -f elf32 -o program.o {asm_file} && gcc -m32 -no-pie -nostartfiles -o {exe_file} program.o -e _start"
+                            # build_cmd = f"gcc -x assembler {asm_file} -o {exe_file}"
                         build_result = subprocess.run(build_cmd, shell=True, capture_output=True, text=True, timeout=self.timeout)
                         if build_result.returncode != 0:
                             divergences.append({
@@ -98,7 +99,7 @@ class TestRunner:
                             run_cmd = asm_run_template.format(exe_file=exe_file, base_name=base_name, dir=dir_name)
                         else:
                             run_cmd = exe_file
-                        run_result = subprocess.run(run_cmd, shell=True, capture_output=True, text=True, timeout=self.timeout, input=input_values)
+                        run_result = subprocess.run(f'unbuffer {run_cmd}', shell=True, capture_output=True, text=True, timeout=self.timeout, input=input_values)
                         stdout = run_result.stdout.strip()
                         stderr = run_result.stderr.strip()
                         exit_code = run_result.returncode
@@ -150,6 +151,14 @@ class TestRunner:
                         'actual': stdout
                     })
             elif expect_fail:
+                # Build expected_output if provided
+                expected_output = ''
+                if 'output' in test:
+                    if isinstance(test['output'], list):
+                        expected_output = ('\n').join(test['output']).strip()
+                    elif isinstance(test['output'], str):
+                        expected_output = test['output'].strip()
+
                 if exit_code == 0:
                     divergences.append({
                         'index': test.get('index', idx+1),
@@ -159,13 +168,78 @@ class TestRunner:
                         'expected': f'Exception',
                         'actual': f'Exit 0, output: {stdout}'
                     })
-                # elif test.get('exception') and test.get('exception') not in [None, 'None'] and test.get('exception') not in stderr:
-                #     divergences.append({
-                #         'index': test.get('index', idx+1),
-                #         'name': test['name'],
-                #         'expected': f'Exception: {test.get("exception")}',
-                #         'actual': f'Exception: {stderr}'
-                #     })
+                    if len(divergences) >= self.max_errors:
+                        break
+                    continue
+
+                # Normalize actual error output (stderr preferred)
+                error_output = stdout + '\n' + stderr
+                normalized_actual = (error_output or '').strip()
+
+                # If expected specifies a bracketed error prefix like [Parser], [Lexer], [Semantic], enforce it
+                expected_has_prefix = bool(expected_output and expected_output.startswith('[') and ']' in expected_output)
+                if expected_has_prefix:
+                    expected_prefix = expected_output.split(']', 1)[0] + ']'
+                    actual_has_prefix = '[' in normalized_actual and ']' in normalized_actual
+                    prefix_requirement = 'Error output prefixed with [Lexer], [Parser], or [Semantic]'
+
+                    if not actual_has_prefix:
+                        divergences.append({
+                            'index': test.get('index', idx+1),
+                            'description': test['description'],
+                            'code': code,
+                            'input': input_values,
+                            'expected': prefix_requirement,
+                            'actual': normalized_actual or 'Empty error output'
+                        })
+                        if len(divergences) >= self.max_errors:
+                            break
+                        continue
+
+                    actual_prefix = '[' + normalized_actual.split('[', 1)[1]
+                    actual_prefix = actual_prefix.split(']', 1)[0] + ']'
+
+                    check_prefix = False
+                    if expected_prefix == '[Lexer]':
+                        check_prefix = expected_prefix not in normalized_actual
+                        check_prefix = check_prefix or ('[Parser]' in normalized_actual) or ('[Semantic]' in normalized_actual)
+                    elif expected_prefix == '[Parser]':
+                        check_prefix = expected_prefix not in normalized_actual
+                        check_prefix = check_prefix or ('[Lexer]' in normalized_actual) or ('[Semantic]' in normalized_actual)
+                    elif expected_prefix == '[Semantic]':
+                        check_prefix = expected_prefix not in normalized_actual
+                        check_prefix = check_prefix or ('[Lexer]' in normalized_actual) or ('[Parser]' in normalized_actual)
+
+                    if check_prefix: # actual_prefix.lower() != expected_prefix.lower():
+                        divergences.append({
+                            'index': test.get('index', idx+1),
+                            'description': test['description'],
+                            'code': code,
+                            'input': input_values,
+                            'expected': f"{expected_prefix} error code",
+                            'actual': normalized_actual
+                        })
+                        if len(divergences) >= self.max_errors:
+                            break
+                        continue
+
+                    # Both prefixes match; compare full message case-insensitive
+                    # Removed temporarily
+                    if normalized_actual.lower() != expected_output.lower() and False:
+                        divergences.append({
+                            'index': test.get('index', idx+1),
+                            'description': test['description'],
+                            'code': code,
+                            'input': input_values,
+                            'expected': expected_output,
+                            'actual': normalized_actual
+                        })
+                        if len(divergences) >= self.max_errors:
+                            break
+                        continue
+                else:
+                    # No special prefix requested: we don't enforce error text for failing tests beyond non-zero exit
+                    pass
             else:
                 divergences.append({
                     'index': test.get('index', idx+1),

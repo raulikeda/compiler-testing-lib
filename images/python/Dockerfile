@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     nasm \
     gcc \
+    gcc-multilib \
+    g++-multilib \
+    expect \
+    libc6-dev-i386 \
     curl \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*

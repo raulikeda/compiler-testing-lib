@@ -13,229 +13,229 @@ tests:
   description: Missing Expression After +
   input: []
   output:
-  - Unexpected token EOL
+  - '[Parser] Unexpected token EOL'
   exception: true
 - index: 3
   name: test003
   description: Missing Expression After -
   input: []
   output:
-  - Unexpected token EOL
+  - '[Parser] Unexpected token EOL'
   exception: true
 - index: 4
   name: test004
   description: Empty Expression
   input: []
   output:
-  - Unexpected token EOL
+  - '[Parser] Unexpected token EOL'
   exception: true
 - index: 5
   name: test005
   description: Missing Expression After +
   input: []
   output:
-  - Unexpected token EOL
+  - '[Parser] Unexpected token EOL'
   exception: true
 - index: 6
   name: test006
   description: Missing Expression After -
   input: []
   output:
-  - Unexpected token EOL
+  - '[Parser] Unexpected token EOL'
   exception: true
 - index: 7
   name: test007
   description: No Operator
   input: []
   output:
-  - Unexpected token INT
+  - '[Parser] Unexpected token INT'
   exception: true
 - index: 8
   name: test008
   description: Invalid Token
   input: []
   output:
-  - Invalid token ,
+  - '[Lexer] Invalid token ,'
   exception: true
 - index: 9
   name: test009
   description: Starting with Operator *
   input: []
   output:
-  - Unexpected token MULT
+  - '[Parser] Unexpected token MULT'
   exception: true
 - index: 10
   name: test010
   description: Starting with Operator /
   input: []
   output:
-  - Unexpected token DIV
+  - '[Parser] Unexpected token DIV'
   exception: true
 - index: 11
   name: test011
   description: Missing Number After *
   input: []
   output:
-  - Unexpected token EOL
+  - '[Parser] Unexpected token EOL'
   exception: true
 - index: 12
   name: test012
   description: Missing Number After /
   input: []
   output:
-  - Unexpected token EOL
+  - '[Parser] Unexpected token EOL'
   exception: true
 - index: 13
   name: test013
   description: Only Operator *
   input: []
   output:
-  - Unexpected token MULT
+  - '[Parser] Unexpected token MULT'
   exception: true
 - index: 14
   name: test014
   description: Only Operator /
   input: []
   output:
-  - Unexpected token DIV
+  - '[Parser] Unexpected token DIV'
   exception: true
 - index: 15
   name: test015
   description: Two Consecultives Operators +*
   input: []
   output:
-  - Unexpected token MULT
+  - '[Parser] Unexpected token MULT'
   exception: true
 - index: 16
   name: test016
   description: Two Consecultives Operators +/
   input: []
   output:
-  - Unexpected token DIV
+  - '[Parser] Unexpected token DIV'
   exception: true
 - index: 17
   name: test017
   description: Two Consecultives Operators **
   input: []
   output:
-  - Unexpected token MULT
+  - '[Parser] Unexpected token MULT'
   exception: true
 - index: 18
   name: test018
   description: Wrong Comment
   input: []
   output:
-  - Unexpected token EOF
+  - '[Parser] Unexpected token EOF'
   exception: true
 - index: 19
   name: test019
   description: Two Consecultives Operators */
   input: []
   output:
-  - Unexpected token DIV
+  - '[Parser] Unexpected token DIV'
   exception: true
 - index: 20
   name: test020
   description: Two Consecultives Operators /*
   input: []
   output:
-  - Unexpected token MULT
+  - '[Parser] Unexpected token MULT'
   exception: true
 - index: 21
   name: test021
   description: Missing )
   input: []
   output:
-  - Missing CLOSE_PAR
+  - '[Parser] Missing CLOSE_PAR'
   exception: true
 - index: 22
   name: test022
   description: Missing (
   input: []
   output:
-  - Unexpected token CLOSE_PAR
+  - '[Parser] Unexpected token CLOSE_PAR'
   exception: true
 - index: 23
   name: test023
   description: Missing )
   input: []
   output:
-  - Missing CLOSE_PAR
+  - '[Parser] Missing CLOSE_PAR'
   exception: true
 - index: 24
   name: test024
   description: Missing (
   input: []
   output:
-  - Unexpected token CLOSE_PAR
+  - '[Parser] Unexpected token CLOSE_PAR'
   exception: true
 - index: 25
   name: test025
   description: Wrong Print
   input: []
   output:
-  - Unexpected token OPEN_PAR
+  - '[Parser] Unexpected token OPEN_PAR'
   exception: true
 - index: 26
   name: test026
   description: No Operator
   input: []
   output:
-  - Unexpected token IDEN
+  - '[Parser] Unexpected token IDEN'
   exception: true
 - index: 27
   name: test027
   description: Missing (
   input: []
   output:
-  - Unexpected token INT (expected OPEN_PAR)
+  - '[Parser] Unexpected token INT (expected OPEN_PAR)'
   exception: true
 - index: 28
   name: test028
   description: Missing )
   input: []
   output:
-  - Unexpected token EOL (expected CLOSE_PAR)
+  - '[Parser] Unexpected token EOL (expected CLOSE_PAR)'
   exception: true
 - index: 29
   name: test029
   description: Missing ()
   input: []
   output:
-  - Unexpected token INT (expected OPEN_PAR)
+  - '[Parser] Unexpected token INT (expected OPEN_PAR)'
   exception: true
 - index: 30
   name: test030
   description: Missing Identifier
   input: []
   output:
-  - Identifier not found
+  - '[Semantic] Identifier not found'
   exception: true
 - index: 31
   name: test031
   description: Invalid Identifier Name
   input: []
   output:
-  - Unexpected token IDEN
+  - '[Parser] Unexpected token IDEN'
   exception: true
 - index: 32
   name: test032
   description: Use Print as Identifier
   input: []
   output:
-  - Unexpected token ASSIGN (expected OPEN_PAR)
+  - '[Parser] Unexpected token ASSIGN (expected OPEN_PAR)'
   exception: true
 - index: 33
   name: test033
   description: Missing )
   input: []
   output:
-  - Unexpected token EOL (expected CLOSE_PAR)
+  - '[Parser] Unexpected token EOL (expected CLOSE_PAR)'
   exception: true
 - index: 34
   name: test034
   description: Use Number as Identifier
   input: []
   output:
-  - Unexpected token INT
+  - '[Parser] Unexpected token INT'
   exception: true

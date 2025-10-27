@@ -200,15 +200,15 @@ class TestRunner:
                     actual_prefix = actual_prefix.split(']', 1)[0] + ']'
 
                     check_prefix = False
-                    if expected_prefix == '[Lexer]':
-                        check_prefix = expected_prefix not in normalized_actual
-                        check_prefix = check_prefix or ('[Parser]' in normalized_actual) or ('[Semantic]' in normalized_actual)
-                    elif expected_prefix == '[Parser]':
-                        check_prefix = expected_prefix not in normalized_actual
-                        check_prefix = check_prefix or ('[Lexer]' in normalized_actual) or ('[Semantic]' in normalized_actual)
-                    elif expected_prefix == '[Semantic]':
-                        check_prefix = expected_prefix not in normalized_actual
-                        check_prefix = check_prefix or ('[Lexer]' in normalized_actual) or ('[Parser]' in normalized_actual)
+                    if expected_prefix.lower() == '[Lexer]'.lower():
+                        check_prefix = expected_prefix.lower() not in normalized_actual.lower()
+                        check_prefix = check_prefix or ('[Parser]'.lower() in normalized_actual.lower()) or ('[Semantic]'.lower() in normalized_actual.lower())
+                    elif expected_prefix.lower() == '[Parser]'.lower():
+                        check_prefix = expected_prefix.lower() not in normalized_actual.lower()
+                        check_prefix = check_prefix or ('[Lexer]'.lower() in normalized_actual.lower()) or ('[Semantic]'.lower() in normalized_actual.lower())
+                    elif expected_prefix.lower() == '[Semantic]'.lower():
+                        check_prefix = expected_prefix.lower() not in normalized_actual.lower()
+                        check_prefix = check_prefix or ('[Lexer]'.lower() in normalized_actual.lower()) or ('[Parser]'.lower() in normalized_actual.lower())
 
                     if check_prefix: # actual_prefix.lower() != expected_prefix.lower():
                         divergences.append({

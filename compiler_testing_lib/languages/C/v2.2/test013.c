@@ -1,2 +1,2 @@
 // Unexpected token MULT
-int w = *;
+int o = *;

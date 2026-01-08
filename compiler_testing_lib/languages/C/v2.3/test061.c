@@ -1,4 +1,4 @@
 void main() {
   // Incompatible types
-  str z = 4;
+  str e = 9;
 }

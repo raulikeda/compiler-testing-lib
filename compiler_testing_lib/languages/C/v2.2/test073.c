@@ -1,2 +1,2 @@
 // Incompatible Types
-bool g = "a"&&6;
+bool x = "a"&&7;

@@ -1,2 +1,2 @@
-// Missing CLOSE_PAR
-q = (8;
+// Unexpected token CLOSE_PAR
+z = 5);

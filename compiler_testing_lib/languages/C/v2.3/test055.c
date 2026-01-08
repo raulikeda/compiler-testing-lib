@@ -1,4 +1,4 @@
 void main() {
   // Unexpected Identifier
-  imt x1 = 4;
+  imt x1 = 7;
 }

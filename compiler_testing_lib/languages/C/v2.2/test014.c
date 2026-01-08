@@ -1,2 +1,2 @@
 // Unexpected token DIV
-int r = /;
+int y = /;

@@ -1,4 +1,4 @@
 void main() {
-  // Unexpected token DIV
-  int u = 2*/4;
+  // Unexpected token MULT
+  int t = 9/*3;
 }

@@ -1,2 +1,2 @@
-// Unexpected token MULT
-int g = 1**8;
+// Unexpected token CLOSE_BRA
+int q = //8;

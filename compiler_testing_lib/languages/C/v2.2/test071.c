@@ -1,2 +1,2 @@
 // Incompatible Types
-bool d = true<2;
+bool v = true<3;

@@ -1,2 +1,2 @@
 // Incompatible types
-str s = scanf();
+str f = scanf();

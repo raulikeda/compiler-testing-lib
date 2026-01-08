@@ -1,2 +1,2 @@
-// Unexpected token CLOSE_PAR
-int n = 5);
+// Missing CLOSE_PAR
+int b = ((9);

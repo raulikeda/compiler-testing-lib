@@ -1,5 +1,5 @@
 // Missing Right Expression
-int n = 1;
+int d = 1;
 if (!) {
-  n = 2;
+  d = 2;
 }

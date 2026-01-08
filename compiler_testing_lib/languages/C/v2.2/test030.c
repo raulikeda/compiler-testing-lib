@@ -1,3 +1,3 @@
 // Identifier not found
-int x1 = 1;
+int x1 = 4;
 printf(X1);

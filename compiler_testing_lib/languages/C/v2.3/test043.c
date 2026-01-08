@@ -1,9 +1,9 @@
 void main() {
   // Missing OPEN_BRA
-  int m = 1;
-  if (m == 1) {
-    m = 2;
+  int e = 1;
+  if (e == 1) {
+    e = 2;
   } else
-    m = 3;
+    e = 3;
   }
 }

@@ -1,2 +1,2 @@
-// Unexpected token MULT
-z = 8/*2;
+// Missing CLOSE_PAR
+i = (6;

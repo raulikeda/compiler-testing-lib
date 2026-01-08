@@ -1,2 +1,2 @@
-// Unexpected token MULT
-int y = 7/*7;
+// Missing CLOSE_PAR
+int x = (2;

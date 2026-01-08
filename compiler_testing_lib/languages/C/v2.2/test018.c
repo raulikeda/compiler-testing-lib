@@ -1,2 +1,2 @@
-// Unexpected token CLOSE_BRA
-int z = //8;
+// Unexpected token DIV
+int u = 5*/1;

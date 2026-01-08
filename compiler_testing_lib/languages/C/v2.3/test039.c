@@ -1,4 +1,4 @@
 void main() {
   // Unexpected token INT
-  3 = 5 + 4;
+  3 = 9 + 3;
 }

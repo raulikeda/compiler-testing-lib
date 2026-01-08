@@ -1,4 +1,4 @@
 void main() {
-  // Unexpected token CLOSE_BRA
-  int e = //9;
+  // Unexpected token DIV
+  int v = 7*/8;
 }

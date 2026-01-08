@@ -1,2 +1,2 @@
-// Unexpected token DIV
-int g = 2*/1;
+// Unexpected token MULT
+int e = 9/*7;

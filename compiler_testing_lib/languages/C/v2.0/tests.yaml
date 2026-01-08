@@ -55,7 +55,7 @@ tests:
   description: Invalid Token
   input: []
   output:
-  - '[Lexer] Invalid token ,'
+  - '[Lexer] Invalid token @'
   exception: true
 - index: 9
   name: test009
@@ -115,59 +115,59 @@ tests:
   exception: true
 - index: 17
   name: test017
-  description: Two Consecultives Operators **
-  input: []
-  output:
-  - '[Parser] Unexpected token MULT'
-  exception: true
-- index: 18
-  name: test018
   description: Wrong Comment
   input: []
   output:
   - '[Parser] Unexpected token EOF'
   exception: true
-- index: 19
-  name: test019
+- index: 18
+  name: test018
   description: Two Consecultives Operators */
   input: []
   output:
   - '[Parser] Unexpected token DIV'
   exception: true
-- index: 20
-  name: test020
+- index: 19
+  name: test019
   description: Two Consecultives Operators /*
   input: []
   output:
   - '[Parser] Unexpected token MULT'
   exception: true
-- index: 21
-  name: test021
+- index: 20
+  name: test020
   description: Missing )
   input: []
   output:
   - '[Parser] Missing CLOSE_PAR'
+  exception: true
+- index: 21
+  name: test021
+  description: Missing (
+  input: []
+  output:
+  - '[Parser] Unexpected token CLOSE_PAR'
   exception: true
 - index: 22
   name: test022
-  description: Missing (
-  input: []
-  output:
-  - '[Parser] Unexpected token CLOSE_PAR'
-  exception: true
-- index: 23
-  name: test023
   description: Missing )
   input: []
   output:
   - '[Parser] Missing CLOSE_PAR'
   exception: true
-- index: 24
-  name: test024
+- index: 23
+  name: test023
   description: Missing (
   input: []
   output:
   - '[Parser] Unexpected token CLOSE_PAR'
+  exception: true
+- index: 24
+  name: test024
+  description: Division by Zero
+  input: []
+  output:
+  - '[Semantic] Division by zero'
   exception: true
 - index: 25
   name: test025

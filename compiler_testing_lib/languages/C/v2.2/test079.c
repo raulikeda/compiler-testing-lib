@@ -1,2 +1,2 @@
 // Incompatible Types
-int c = true-1;
+int z = true-1;

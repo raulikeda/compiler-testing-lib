@@ -1,5 +1,5 @@
 // Missing OPEN_BRA
-d = 1;
-if (d == 1)
-  d = 2;
+v = 1;
+if (v == 1)
+  v = 2;
 }

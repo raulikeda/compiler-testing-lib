@@ -1,4 +1,4 @@
 void main() {
   // Incompatible Types
-  str w = 2+7;
+  str c = 6+6;
 }

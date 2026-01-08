@@ -1,7 +1,7 @@
 int test(int x,) {
   // Missing second arg
-  return 7;
+  return 5;
 }
 void main() {
-  printf(test(3));
+  printf(test(7));
 }

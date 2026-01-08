@@ -53,7 +53,7 @@ tests:
   description: Invalid Token
   input: []
   output:
-  - '[Lexer] Invalid token ,'
+  - '[Lexer] Invalid token @'
   exception: true
 - index: 9
   name: test009

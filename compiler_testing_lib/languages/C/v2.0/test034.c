@@ -1,2 +1,2 @@
 // Unexpected token INT
-3 = 2 + 6;
+3 = 8 + 2;

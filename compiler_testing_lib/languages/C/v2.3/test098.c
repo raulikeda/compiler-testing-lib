@@ -3,5 +3,5 @@ bool test(bool x) {
 }
 void main() {
   // Wrong arg type
-  printf(test(6));
+  printf(test(4));
 }

@@ -1,0 +1,50 @@
+tests:
+- index: 1
+  name: test001
+  description: Valid Input
+  input: []
+  output:
+  - '15'
+  exception: false
+- index: 2
+  name: test002
+  description: Starting with Operator ^
+  input: []
+  output:
+  - '[Parser] Unexpected token XOR (expected INT)'
+  exception: true
+- index: 3
+  name: test003
+  description: Missing Number After ^
+  input: []
+  output:
+  - '[Parser] Unexpected token EOF (expected INT)'
+  exception: true
+- index: 4
+  name: test004
+  description: Two Consecultives Operators ^^
+  input: []
+  output:
+  - '[Parser] Unexpected token XOR (expected INT)'
+  exception: true
+- index: 5
+  name: test005
+  description: Two Consecultives Operators +^
+  input: []
+  output:
+  - '[Parser] Unexpected token XOR (expected INT)'
+  exception: true
+- index: 6
+  name: test006
+  description: Two Consecultives Operators ^+
+  input: []
+  output:
+  - '[Parser] Unexpected token PLUS (expected INT)'
+  exception: true
+- index: 7
+  name: test007
+  description: Only Operator ^
+  input: []
+  output:
+  - '[Parser] Unexpected token XOR (expected INT)'
+  exception: true

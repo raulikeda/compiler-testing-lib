@@ -29,7 +29,10 @@
   }
   
   
-  ;;; {{ }} // Teste de colchetes
+  ;;; {
+{
+ }
+} // Teste de colchetes
   // Saida final
   printf(x_1);
   printf(x);

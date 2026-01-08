@@ -1,4 +1,4 @@
 void main() {
-  // Unexpected token MULT
-  int r = 2/*5;
+  // Missing CLOSE_PAR
+  int n = (3;
 }

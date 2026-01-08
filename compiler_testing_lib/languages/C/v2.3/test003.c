@@ -1,4 +1,4 @@
 void main() {
   // Unexpected token EOL
-  int e = 9-;
+  int z = 3-;
 }

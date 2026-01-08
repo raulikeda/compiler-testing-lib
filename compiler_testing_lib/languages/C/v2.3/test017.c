@@ -1,4 +1,4 @@
 void main() {
-  // Unexpected token MULT
-  int a = 1**9;
+  // Unexpected token CLOSE_BRA
+  int o = //7;
 }

@@ -1,5 +1,5 @@
-int e = 6;
+int o = 9;
 void main() {
   // Function not found
-  printf(e(8));
+  printf(o(3));
 }

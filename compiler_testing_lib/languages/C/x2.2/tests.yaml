@@ -1,0 +1,38 @@
+tests:
+- index: 1
+  name: test001
+  description: Valid Input
+  input: []
+  output:
+  - '7'
+  - '1'
+  - 5A
+  exception: false
+- index: 2
+  name: test002
+  description: Incorrect Type Assignment
+  input: []
+  output:
+  - '[Semantic] Unexpected type FLOAT assigned to INT variable'
+  exception: true
+- index: 3
+  name: test003
+  description: Incorrect casting
+  input: []
+  output:
+  - '[Semantic] Unexpected type FLOAT assigned to INT variable'
+  exception: true
+- index: 4
+  name: test004
+  description: Missing close par in casting
+  input: []
+  output:
+  - '[Parser] Unexpected token STR'
+  exception: true
+- index: 5
+  name: test005
+  description: Wrong Type in Binary Operator
+  input: []
+  output:
+  - '[Semantic] Diffenrent types in binary operation: FLOAT and STR'
+  exception: true

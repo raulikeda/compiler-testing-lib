@@ -1,0 +1,37 @@
+tests:
+- index: 1
+  name: test001
+  description: Valid Input
+  input: []
+  output:
+  - '4'
+  - '4'
+  exception: false
+- index: 2
+  name: test002
+  description: Incomplete define Statement
+  input: []
+  output:
+  - '[PrePro] Invalid define directive'
+  exception: true
+- index: 3
+  name: test003
+  description: Change Value of Constant
+  input: []
+  output:
+  - '[Parser] Expected token EOL but found ASSIGN'
+  exception: true
+- index: 4
+  name: test004
+  description: Incomplete Immutable Variable Declaration
+  input: []
+  output:
+  - '[Parser] Unexpected token EOL'
+  exception: true
+- index: 5
+  name: test005
+  description: Change Value of Immutable Variable
+  input: []
+  output:
+  - '[Semantic] Variable x can not be changed'
+  exception: true

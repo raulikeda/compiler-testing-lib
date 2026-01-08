@@ -1,9 +1,9 @@
 // Unexpected ELSE
-int d = 1;
-if (d == 1) {
-  d = 2;
+int k = 1;
+if (k == 1) {
+  k = 2;
 } else {
-  d = 3;
+  k = 3;
 } else {
-  d = 4;
+  k = 4;
 }

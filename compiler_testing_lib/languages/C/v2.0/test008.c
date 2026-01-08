@@ -1,2 +1,2 @@
-// Invalid token ,
-z = ,;
+// Invalid token @
+y = @;

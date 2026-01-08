@@ -1,2 +1,2 @@
 // Unexpected EOF
-str h = "a;
+str c = "a;

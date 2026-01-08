@@ -1,0 +1,12 @@
+tests:
+- index: 1
+  name: test001
+  description: Valid Input
+  input: []
+  output:
+  - '5'
+  - '4'
+  - '3'
+  - '2'
+  - '120'
+  exception: false

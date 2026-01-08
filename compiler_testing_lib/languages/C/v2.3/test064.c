@@ -1,5 +1,5 @@
 void main() {
   // Variable Already Declared
-  int d;
-  str d;
+  int u;
+  str u;
 }

@@ -1,2 +1,2 @@
 // Incompatible Types
-int s = 6/true;
+int m = 9/true;

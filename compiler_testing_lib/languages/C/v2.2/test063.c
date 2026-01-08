@@ -1,2 +1,2 @@
 // Variable not found
-bool k = True;
+bool f = True;

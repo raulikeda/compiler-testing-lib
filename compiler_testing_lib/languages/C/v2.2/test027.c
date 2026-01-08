@@ -1,2 +1,2 @@
 // Unexpected token INT (expected OPEN_PAR)
-printf 2);
+printf 6);

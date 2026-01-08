@@ -88,6 +88,13 @@ Run the container (auto-clones the example repo and runs tests):
 - Place new test files and update `test.yaml` in the appropriate `languages/<lang>/<version>/` directory inside `compiler_testing_lib/`.
 - Rebuild and upload the package to PyPI for distribution.
 
+## Syncing Generated Tests
+- Use `./copy.sh <language> <version>` from the repo root to pull tests from `../compiler-tests-generator/output/<language>/<version>/` into `compiler_testing_lib/languages/<language>/<version>/` (e.g., `./copy.sh C v0.0`).
+- The script cleans the destination version folder before copying, so ensure you have the desired generator output ready.
+
+## Additional code syntax checking
+- The lib also checks syntax based on struct.json file in the `syntax/<version>` directory. The tested code must implement all the expected structure (including static features) designed in the file and can't have additional features. It also does some code quality check, like main clause. Only working for Python now. Pending: pep8 and snake_case check.
+
 ## Contributing
 1. Fork the repo and create a feature branch.
 2. Add or update tests in `compiler_testing_lib/languages/`.

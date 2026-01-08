@@ -1,2 +1,2 @@
 // Unexpected token EOL
-t = 2-;
+p = 8-;

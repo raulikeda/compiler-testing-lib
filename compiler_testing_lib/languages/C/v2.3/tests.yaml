@@ -7,6 +7,7 @@ tests:
   output:
   - '2'
   - '24'
+  - '7'
   - '8'
   - '9'
   - '0'
@@ -28,7 +29,7 @@ tests:
   - 'true'
   - 'true'
   - 'false'
-  exception: true
+  exception: false
 - index: 2
   name: test002
   description: Missing Expression After +
@@ -136,66 +137,66 @@ tests:
   exception: true
 - index: 17
   name: test017
-  description: Two Consecultives Operators **
-  input: []
-  output:
-  - '[Parser] Unexpected token MULT'
-  exception: true
-- index: 18
-  name: test018
   description: Wrong Comment
   input: []
   output:
   - '[Parser] Unexpected token CLOSE_BRA'
   exception: true
-- index: 19
-  name: test019
+- index: 18
+  name: test018
   description: Two Consecultives Operators */
   input: []
   output:
   - '[Parser] Unexpected token DIV'
   exception: true
-- index: 20
-  name: test020
+- index: 19
+  name: test019
   description: Two Consecultives Operators /*
   input: []
   output:
   - '[Parser] Unexpected token MULT'
   exception: true
-- index: 21
-  name: test021
+- index: 20
+  name: test020
   description: Missing )
   input: []
   output:
   - '[Parser] Missing CLOSE_PAR'
+  exception: true
+- index: 21
+  name: test021
+  description: Missing (
+  input: []
+  output:
+  - '[Parser] Unexpected token CLOSE_PAR'
   exception: true
 - index: 22
   name: test022
-  description: Missing (
-  input: []
-  output:
-  - '[Parser] Unexpected token CLOSE_PAR'
-  exception: true
-- index: 23
-  name: test023
   description: Missing )
   input: []
   output:
   - '[Parser] Missing CLOSE_PAR'
   exception: true
-- index: 24
-  name: test024
+- index: 23
+  name: test023
   description: Missing (
   input: []
   output:
   - '[Parser] Unexpected token CLOSE_PAR'
+  exception: true
+- index: 24
+  name: test024
+  description: Division by Zero
+  input: []
+  output:
+  - '[Semantic] Division by zero'
   exception: true
 - index: 25
   name: test025
   description: Wrong Print
   input: []
   output:
-  - '[Parser] Unexpected token OPEN_PAR'
+  - '[Semantic] Undefined variable (function)'
   exception: true
 - index: 26
   name: test026
@@ -263,10 +264,9 @@ tests:
 - index: 35
   name: test035
   description: Missing main function
-  input:
-  - '&MAINCALL'
+  input: []
   output:
-  - '[Parser] Unexpected token EOF (expected OPEN_BRA)'
+  - '[Semantic] Undefined function main'
   exception: true
 - index: 36
   name: test036
@@ -457,7 +457,7 @@ tests:
   description: Incompatible Types
   input: []
   output:
-  - '[Semantic] Incompatible types'
+  - Incompatible types
   exception: true
 - index: 63
   name: test063
@@ -668,7 +668,7 @@ tests:
   description: Missing function type
   input: []
   output:
-  - '[Semantic] Missing function type'
+  - '[Parser] Missing function type'
   exception: true
 - index: 93
   name: test093
@@ -682,14 +682,14 @@ tests:
   description: Missing second arg
   input: []
   output:
-  - '[Semantic] Missing second arg'
+  - '[Parser] Unexpected token CLOSE_PAR'
   exception: true
 - index: 95
   name: test095
   description: Missing second arg
   input: []
   output:
-  - '[Semantic] Missing second arg'
+  - '[Parser] Unexpected token CLOSE_PAR'
   exception: true
 - index: 96
   name: test096

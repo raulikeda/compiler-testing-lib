@@ -1,5 +1,5 @@
 // Missing Right Expression
-f = 1;
-if (f <) {
-  f = 2;
+b = 1;
+if (b <) {
+  b = 2;
 }

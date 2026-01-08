@@ -1,4 +1,4 @@
 void main() {
-  // Missing CLOSE_PAR
-  int x = (8;
+  // Unexpected token CLOSE_PAR
+  int j = 2);
 }

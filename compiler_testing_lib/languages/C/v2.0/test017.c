@@ -1,2 +1,2 @@
-// Unexpected token MULT
-s = 8**1;
+// Unexpected token EOF
+x = //3;

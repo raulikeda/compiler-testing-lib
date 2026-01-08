@@ -1,2 +1,2 @@
 // Incompatible Types
-bool v = "a"==true;
+bool p = "a"==true;

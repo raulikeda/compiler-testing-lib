@@ -1,4 +1,4 @@
 void main() {
   // Incompatible Types
-  bool s = "a"."b";
+  bool w = "a"$"b";
 }

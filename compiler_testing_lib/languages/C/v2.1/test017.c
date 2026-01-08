@@ -1,2 +1,2 @@
-// Unexpected token MULT
-a = 4**6;
+// Unexpected token CLOSE_BRA
+u = //5;

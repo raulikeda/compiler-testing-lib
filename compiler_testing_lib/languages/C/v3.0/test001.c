@@ -6,7 +6,7 @@
   printf(A); 
   printf(x_2);
   {
-    int x_2 = 7;
+    int x_3 = 7;
     x_1 = 9;
     A = 8;
     ;

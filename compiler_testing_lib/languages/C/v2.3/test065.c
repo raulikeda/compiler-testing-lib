@@ -1,4 +1,4 @@
 void main() {
   // Unexpected EOF
-  str h = "a;
+  str t = "a;
 }

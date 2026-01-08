@@ -1,2 +1,2 @@
-// Unexpected token MULT
-e = 3/*5;
+// Missing CLOSE_PAR
+y = (1;

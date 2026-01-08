@@ -1,2 +1,2 @@
-// Unexpected token DIV
-o = 4*/7;
+// Unexpected token MULT
+s = 1/*3;

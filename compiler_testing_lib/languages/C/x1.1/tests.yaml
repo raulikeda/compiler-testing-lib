@@ -1,0 +1,29 @@
+tests:
+- index: 1
+  name: test001
+  description: Valid Input
+  input: []
+  output:
+  - '3'
+  exception: false
+- index: 2
+  name: test002
+  description: Missing Number After **
+  input: []
+  output:
+  - '[Parser] Unexpected token EOF'
+  exception: true
+- index: 3
+  name: test003
+  description: Only Operator **
+  input: []
+  output:
+  - '[Parser] Unexpected token POWER'
+  exception: true
+- index: 4
+  name: test004
+  description: Starting with Operator **
+  input: []
+  output:
+  - '[Parser] Unexpected token POWER'
+  exception: true

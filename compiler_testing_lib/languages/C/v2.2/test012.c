@@ -1,2 +1,2 @@
 // Unexpected token EOL
-int x = 1/;
+int b = 5/;

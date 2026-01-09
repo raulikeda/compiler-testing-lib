@@ -1,2 +1,2 @@
 // Unexpected token MULT
-i = *3;
+x = *7;

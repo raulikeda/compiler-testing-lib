@@ -1,2 +1,2 @@
 // Unexpected token EOL
-int c = -;
+int i = -;

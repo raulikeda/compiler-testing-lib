@@ -10,27 +10,34 @@ tests:
   exception: false
 - index: 2
   name: test002
-  description: Incorrect Type Assignment
+  description: Invalid Number Format
   input: []
   output:
-  - '[Semantic] Unexpected type FLOAT assigned to INT variable'
+  - '[Lexer] Invalid number format: 5.1.2'
   exception: true
 - index: 3
   name: test003
-  description: Incorrect casting
+  description: Incorrect Type Assignment
   input: []
   output:
   - '[Semantic] Unexpected type FLOAT assigned to INT variable'
   exception: true
 - index: 4
   name: test004
+  description: Incorrect casting
+  input: []
+  output:
+  - '[Semantic] Unexpected type FLOAT assigned to INT variable'
+  exception: true
+- index: 5
+  name: test005
   description: Missing close par in casting
   input: []
   output:
   - '[Parser] Unexpected token STR'
   exception: true
-- index: 5
-  name: test005
+- index: 6
+  name: test006
   description: Wrong Type in Binary Operator
   input: []
   output:

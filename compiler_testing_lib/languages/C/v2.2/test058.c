@@ -1,2 +1,2 @@
 // Incompatible types
-str t = 9;
+str h = 1;

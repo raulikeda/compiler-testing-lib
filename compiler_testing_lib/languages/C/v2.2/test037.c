@@ -1,3 +1,3 @@
 // Unexpected EOF (Missing CLOSE_BRA)
-int p = 1;
-if (p == 1) {
+int x = 1;
+if (x == 1) {

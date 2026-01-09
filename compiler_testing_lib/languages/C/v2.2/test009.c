@@ -1,2 +1,2 @@
 // Unexpected token MULT
-int i = *9;
+int k = *8;

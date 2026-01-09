@@ -1,2 +1,2 @@
 // Invalid token @
-int u = ,;
+int g = @;

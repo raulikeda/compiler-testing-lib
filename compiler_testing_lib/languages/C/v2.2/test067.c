@@ -1,2 +1,2 @@
 // Incompatible Types
-bool w = 1>"a";
+bool f = 7>"a";

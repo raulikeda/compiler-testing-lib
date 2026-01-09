@@ -6,7 +6,7 @@ tests:
   output:
   - John Doe
   - '21'
-  - '9'
+  - 'true'
   exception: false
 - index: 2
   name: test002
@@ -35,4 +35,11 @@ tests:
   input: []
   output:
   - '[Semantic] Attribute not found in struct: ages'
+  exception: true
+- index: 6
+  name: test006
+  description: Incomplete Attribute access
+  input: []
+  output:
+  - '[Parser] Unexpected token ASSIGN'
   exception: true

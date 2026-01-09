@@ -1,2 +1,2 @@
 // Unexpected token DIV
-d = 8*/1;
+d = 7*/6;

@@ -1,3 +1,3 @@
 // Unexpected token IDEN
 X = 1;
-c = 3 X;
+k = 4 X;

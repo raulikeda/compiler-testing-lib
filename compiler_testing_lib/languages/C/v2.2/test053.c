@@ -1,2 +1,2 @@
 // Incompatible types
-int r = true;
+int b = true;

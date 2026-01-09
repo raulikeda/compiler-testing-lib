@@ -1,7 +1,7 @@
 // Missing OPEN_BRA
-r = 1;
-if (r == 1) {
-  r = 2;
+w = 1;
+if (w == 1) {
+  w = 2;
 } else
-  r = 3;
+  w = 3;
 }

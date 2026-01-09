@@ -1,2 +1,2 @@
 // Division by Zero
-k = 1/0;
+j = 1/0;

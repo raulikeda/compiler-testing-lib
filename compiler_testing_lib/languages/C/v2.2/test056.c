@@ -1,2 +1,2 @@
 // Incompatible types
-bool u = "a";
+bool y = "a";

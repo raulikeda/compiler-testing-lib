@@ -1,2 +1,2 @@
 // Unexpected token DIV
-int u = 5*/1;
+int q = 2*/9;

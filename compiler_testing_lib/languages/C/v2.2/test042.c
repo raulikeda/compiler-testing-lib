@@ -1,5 +1,5 @@
 // Missing OPEN_BRA
-int d = 1;
-while (d == 1)
-  d = 2;
+int u = 1;
+while (u == 1)
+  u = 2;
 }

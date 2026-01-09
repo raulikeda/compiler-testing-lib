@@ -1,2 +1,2 @@
 // Incompatible Types
-bool m = !3;
+bool v = !3;

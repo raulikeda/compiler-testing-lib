@@ -1,2 +1,2 @@
 // Incompatible types
-str m = false;
+str f = false;

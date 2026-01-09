@@ -1,2 +1,2 @@
-// Incorrect Type Assignment
-int n = 5.1;
+// Invalid Number Format
+float n = 5.1.2;

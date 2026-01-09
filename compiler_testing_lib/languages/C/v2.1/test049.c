@@ -1,2 +1,2 @@
 // Missing CLOSE_PAR
-z = scanf(;
+v = scanf(;

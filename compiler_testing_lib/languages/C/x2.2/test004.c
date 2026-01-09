@@ -1,2 +1,2 @@
-// Missing close par in casting
-int n = (int "5";
+// Incorrect Type Assignment
+int n = (float) "5.1";

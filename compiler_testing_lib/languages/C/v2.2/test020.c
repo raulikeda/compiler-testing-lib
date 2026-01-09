@@ -1,2 +1,2 @@
 // Missing CLOSE_PAR
-int x = (2;
+int i = (7;

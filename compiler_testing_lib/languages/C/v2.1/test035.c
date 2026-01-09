@@ -1,2 +1,2 @@
 // Unexpected token EOL (expected CLOSE_PAR)
-printf(1//);
+printf(7//);

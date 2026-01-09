@@ -1,2 +1,2 @@
 // Incompatible Types
-bool g = "a"$"b";
+bool q = "a"$"b";

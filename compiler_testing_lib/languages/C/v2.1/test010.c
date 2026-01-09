@@ -1,2 +1,2 @@
 // Unexpected token DIV
-e = /5;
+o = /4;

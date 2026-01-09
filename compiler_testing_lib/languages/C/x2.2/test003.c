@@ -1,2 +1,2 @@
 // Incorrect Type Assignment
-int n = (float) "5.1";
+int n = 5.1;

@@ -1,2 +1,2 @@
 // Missing OPEN_PAR
-u = scanf;
+o = scanf;

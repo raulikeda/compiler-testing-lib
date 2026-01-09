@@ -1,7 +1,7 @@
 // Missing OPEN_BRA
-int y = 1;
-if (y == 1) {
-  y = 2;
+int h = 1;
+if (h == 1) {
+  h = 2;
 } else
-  y = 3;
+  h = 3;
 }

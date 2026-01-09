@@ -1,5 +1,5 @@
 // Missing OPEN_BRA
-int b = 1;
-if (b == 1)
-  b = 2;
+int j = 1;
+if (j == 1)
+  j = 2;
 }

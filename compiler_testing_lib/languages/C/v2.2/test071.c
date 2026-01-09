@@ -1,2 +1,2 @@
 // Incompatible Types
-bool v = true<3;
+bool g = true<8;

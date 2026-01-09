@@ -1,5 +1,5 @@
 // Missing Right Expression
-m = 1;
+j = 1;
 if (!) {
-  m = 2;
+  j = 2;
 }

@@ -9,18 +9,18 @@ if [ -f "python/Dockerfile" ]; then
 fi
 
 # Build the remaining images using the base
-# for dir in */ ; do
-#     name="${dir%/}"
-#     if [ "$name" = "python" ]; then
-#         continue
-#     fi
-#     if [ "$name" = "ocaml" ]; then
-#         continue
-#     fi
-#     if [ -f "${name}/Dockerfile" ]; then
-#         image_name="compiler-testing-lib-${name}:latest"
-#         echo "Building $image_name from ${name}/Dockerfile..."
-#         docker build --no-cache -t $image_name -f "${name}/Dockerfile" ..
-#         docker image prune -f
-#     fi
-# done 
+for dir in */ ; do
+    name="${dir%/}"
+    if [ "$name" = "python" ]; then
+        continue
+    fi
+    if [ "$name" = "ocaml" ]; then
+        continue
+    fi
+    if [ -f "${name}/Dockerfile" ]; then
+        image_name="compiler-testing-lib-${name}:latest"
+        echo "Building $image_name from ${name}/Dockerfile..."
+        docker build --no-cache -t $image_name -f "${name}/Dockerfile" ..
+        docker image prune -f
+    fi
+done 

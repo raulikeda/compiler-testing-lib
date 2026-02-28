@@ -2,6 +2,7 @@ import os
 import yaml
 import subprocess
 import json
+from pathlib import Path
 
 class TestRunner:
     def __init__(self, language='C', version=None, max_errors=5, timeout=10, file_extension='c'):
@@ -33,20 +34,40 @@ class TestRunner:
             data = json.load(f)
         return data
 
-    def run_tests(self, command_template, asm_build_template=None, asm_run_template=None, check=None):
+    def run_tests(self, command_template, asm_build_template=None, asm_run_template=None, check=None, ebnf_check=None):
         divergences = []        
         issue = []
+        # check README EBNF if applicable
+        ebnf_path = os.path.join(self._root_dir, 'syntax', self.version, 'ebnf.json')
+        if ebnf_check is not None and os.path.exists(ebnf_path):
+            if os.path.exists(Path('README.md')):
+                with open(Path('README.md'), 'r') as f:
+                    readme_content = f.read()
+                
+                with open(ebnf_path, 'r') as f:
+                    ebnf_model = json.load(f)
+                ebnf_ok, ebnf_errors = ebnf_check(readme_content, ebnf_model)
+                if not ebnf_ok:
+                    message = f"EBNF divergences found in README for version {self.version}:\n\n"
+                    for err in ebnf_errors:
+                        message += f"- {err}\n"
+                    issue.append(message)
+            else:
+                issue.append("- README.md not found in repository.\n")
+
+
         # Check code structure first
         if self.expected_structure is not None:
             if "python" in command_template.lower() and check is not None:
                 divergences = check("main.py", self.expected_structure)
-                message = f"Code Syntax Test:"
-                for d in divergences:
-                    message += f"\n - {d}"
+                if len(divergences) > 0:
+                    message = f"Code Syntax Test:"
+                    for d in divergences:
+                        message += f"\n - {d}"
 
-                issue.append(message)
+                    issue.append(message)
 
-        if len(divergences) == 0:
+        if len(issue) == 0:
             # Iterate through tests
             for idx, test in enumerate(self.tests):
                 

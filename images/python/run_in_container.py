@@ -6,6 +6,7 @@ import requests
 import json
 from compiler_testing_lib.runner import TestRunner
 from compiler_testing_lib.codecheck import check
+from compiler_testing_lib.ebnfcheck import load_and_compare
 
 parser = argparse.ArgumentParser(description='Run compiler-testing-lib in container')
 parser.add_argument('--git_username', required=True)
@@ -84,7 +85,8 @@ runner = TestRunner(
 )
 
 try:
-    result = runner.run_tests(command_template=args.command_template, check=check)
+    result = runner.run_tests(command_template=args.command_template, check=check, ebnf_check=load_and_compare)
+    print(f"Test results:\n{result}")
 except Exception as e:
     result = f"Runner Exception: {str(e)}"
     print(f"\033[91mRunner failed with exception: {e}\033[0m")

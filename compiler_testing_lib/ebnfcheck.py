@@ -208,14 +208,29 @@ def load_and_compare(readme: str, ebnf_model: str) -> Tuple[bool, List[str]]:
 
 if __name__ == "__main__":
 
+    with open("./syntax/v2.3/ebnf-rust.json", 'r') as f:
+        ebnf_gab = f.read()
+
     ebnf_ex = """Um texto qualquer
 
     ```ebnf
-    EXPRESSION = TERM, { ("+" | "-"), TERM } ;
-    TERM = FACTOR, { ("*" | "/"), FACTOR } ;
-    FACTOR = ("+" | "-"), FACTOR | "(", EXPRESSION, ")" | NUMBER ;
-    NUMBER = DIGIT, {DIGIT} ;
-    DIGIT = 0 | 1 | ... | 9 ;
+    PROGRAM = { FUNCDEC | VARDEC } ;
+FUNCDEC = "fn", IDENTIFIER, "(",(ε| IDENTIFIER,":", TYPE, {",", IDENTIFIER,":", TYPE}),")",("->", (TYPE|"(",")")|ε), BLOCK;
+VARDEC = "let", "mut", IDENTIFIER, ":", TYPE, ( ε| "=", BOOLEXPRESSION ), ";";
+BLOCK = "{", {STATEMENT, }, "}" ;
+STATEMENT = (ε|(IDENTIFIER, ("=", BOOLEXPRESSION | "(",(BOOLEXPRESSION, {",", BOOLEXPRESSION} | ε),")")) | ("println!", "(", BOOLEXPRESSION, ")") | "return", BOOLEXPRESSION |ε), ";"| ("if", "(", BOOLEXPRESSION, ")", STATEMENT, (ε|"ELSE", STATEMENT)) | ("while", "(", BOOLEXPRESSION, ")", STATEMENT) | VARDEC | BLOCK;
+BOOLEXPRESSION = BOOLTERM, { "||", BOOLTERM } ;
+BOOLTERM = RELEXPRESSION, { "&&", RELEXPRESSION } ;
+RELEXPRESSION = EXPRESSION, {("==" | "<" | ">"), EXPRESSION};
+EXPRESSION = TERM, { ("+" | "-"), TERM } ;
+TERM = FACTOR, { ("*" | "/"), FACTOR } ;
+FACTOR = NUMBER | "string" | BOOLEAN | IDENTIFIER, ("(",(BOOLEXPRESSION, {",", BOOLEXPRESSION} | ε),")"|ε) | ("+" | "-" |"!"), FACTOR | "(", BOOLEXPRESSION, ")" | "readln!", "(", ")" ;
+TYPE = "i32" | "str" | "bool" ;
+NUMBER = DIGIT, {DIGIT} ;
+IDENTIFIER = LETTER, {LETTER | DIGIT | "_"} ;
+DIGIT = "0" | "..." | "9";
+LETTER = "a" | "..." | "z" | "A" | "..." | "Z" ;
+BOOLEAN = "true" | "false" ;
     ```
 
     Outro texto qualquer
@@ -235,9 +250,9 @@ if __name__ == "__main__":
     FACTOR = ("+" | "-"), FACTOR | "(", EXPRESION, ")" | NUMBER ;
     ```"""
 
-    # print(compare_to_key(ebnf_ex, ebnf_gab))
-    print(load_and_compare(ebnf_ex, "v1.1"))
-    print(load_and_compare(ebnf_alt, "v1.1"))
-    print(load_and_compare(ebnf_err, "v1.1"))
+    print(load_and_compare(ebnf_ex, ebnf_gab))
+    print(load_and_compare(ebnf_ex, "v2.3"))
+    print(load_and_compare(ebnf_alt, "v2.3"))
+    print(load_and_compare(ebnf_err, "v2.3"))
 
-    print(load_and_compare(ebnf_err, "v1.2"))
+    print(load_and_compare(ebnf_err, "v2.3"))

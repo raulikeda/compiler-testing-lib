@@ -2,7 +2,7 @@
     "Lexer": ["__init__", "select_next"], 
     "Parser": ["parse_expression", "run", "parse_term", "parse_factor", "parse_program", "parse_statement", 
                 "parse_block", "parse_bool_expression", "parse_bool_term", "parse_rel_expression",
-                "parse_func_declaration"], 
+                "parse_func_declaration", "parse_var_declaration"], 
     "Token": ["__init__"],
     "Node": ["__init__", "evaluate"],
     "IntVal": ["evaluate"],

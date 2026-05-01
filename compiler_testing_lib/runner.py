@@ -38,7 +38,7 @@ class TestRunner:
         divergences = []        
         issue = []
         # check README EBNF if applicable
-        ebnf_path = os.path.join(self._root_dir, 'syntax', self.version, 'ebnf.json')
+        ebnf_path = os.path.join(self._root_dir, 'syntax', self.version, f'ebnf-{self.language.lower()}.json')
         if ebnf_check is not None and os.path.exists(ebnf_path):
             if os.path.exists(Path('README.md')):
                 with open(Path('README.md'), 'r') as f:

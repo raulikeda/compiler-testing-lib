@@ -133,6 +133,17 @@ python -m compiler_testing_lib.transpiler verify --target go --versions v2.3,x2.
 
 Generated `tests.yaml` files keep the course schema and add `error_phase: parse|build|run` (plus an informational `native_error`) for invalid tests. `TestRunner.run_tests` accepts `build_template`/`run_template`/`target_extension` (generalizing the v3.0 asm flow) and `native_errors=True` for grading against transpiler-generated corpora.
 
+### Tests
+
+The project is managed with [uv](https://docs.astral.sh/uv/) (`pyproject.toml`; run `uv sync` once):
+
+```bash
+uv run pytest                 # full suite; coverage gate: fails under 80%
+uv run pytest -m toolchain    # end-to-end runs (needs go/julia on PATH)
+```
+
+The suite uses the C corpus as its oracle: every corpus test is a pytest case asserting the front end reproduces the reference compiler's exact diagnostic, and every program translates to both targets with the correct declared failure phase (~1600 cases, ~6s, ≈95% coverage of the transpiler package).
+
 ## Contributing
 1. Fork the repo and create a feature branch.
 2. Add or update tests in `compiler_testing_lib/languages/`.

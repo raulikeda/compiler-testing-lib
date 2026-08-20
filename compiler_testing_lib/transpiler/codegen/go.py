@@ -1,25 +1,25 @@
-"""Go — declarative language spec.
+"""Go backend: an IR emitter.
 
-Mechanical equivalences from the course language to Go.  Almost every
-defect needs no special handling: the faithful typed translation is what
-makes ``go build`` fail natively (wrong initializer types, undeclared
-names, constant zero divisors, redeclarations, bad calls), and C-shaped
-token soup is never valid Go, so no parse marker is required.
-
-The one systematic concession: ``_ = x`` after every local declaration,
-because Go rejects declared-and-not-used variables and the course
-language does not.
+Go's surface is the C-family default, so this backend is mostly tables:
+type spellings, the shims behind ``concat``/``pow``/casts, imports, and
+file assembly.  Defects need no special handling — the faithful typed
+translation is what makes ``go build`` fail natively (wrong initializer
+types, unresolved names, constant zero divisors, redeclarations, bad
+calls), so ``spell_check`` stays transparent and no parse marker is
+needed (C-shaped token soup is never valid Go).  The one systematic
+concession: ``_ = x`` after every local declaration, because Go rejects
+declared-and-not-used variables and the course language does not.
 """
 
 from __future__ import annotations
 
 from ..diagnostics import Defect, ErrorCategory as C, Phase
+from .base import IREmitter
 from .registry import register
-from .spec import LanguageSpec
 
 
 @register
-class GoSpec(LanguageSpec):
+class GoEmitter(IREmitter):
     name = "go"
     ext = "go"
     build_template = "go build -o {exe_file} {src_file}"
@@ -28,25 +28,22 @@ class GoSpec(LanguageSpec):
 
     TYPES = {"int": "int", "str": "string", "bool": "bool",
              "float": "float64", "void": ""}
+    PRINTF = "fmt.Println({value})"     # ints, "true"/"false", strings
+    READ_INT = "__scanf()"
 
-    BINOPS = dict(LanguageSpec.BINOPS)      # C-like defaults suit Go:
-    #   + - * / == < > && || ^(xor) are spelled identically;
-    #   $ and ** fall back to the __concat/__pow shims of the base table.
-
-    PRINTF = "fmt.Println({value})"         # ints, "true"/"false", strings
     FEATURE_SHIMS = {
-        "$": ("concat",), "**": ("pow",), "scanf": ("scanf",),
-        "fact": ("fact",), "ternary": ("tern",), "b2i": ("b2i",),
-        "cast:int": ("toInt",), "cast:float": ("toFloat",),
-        "cast:str": ("str",), "cast:bool": ("toBool",),
+        "concat": ("sh_concat",), "pow": ("sh_pow",), "fact": ("sh_fact",),
+        "ternary": ("sh_tern",), "scanf": ("sh_scanf",),
+        "to_int": ("sh_toInt",), "to_float": ("sh_toFloat",),
+        "to_str": ("sh_str",), "to_bool": ("sh_toBool",),
+        "bool_to_int": ("sh_b2i",),
     }
-
-    IMPORTS = {"printf": ("fmt",), "concat": ("fmt",), "str": ("fmt",),
-               "scanf": ("bufio", "os", "strconv"), "toInt": ("math",),
-               "toFloat": ("strconv",)}
+    IMPORTS = {"printf": ("fmt",), "sh_concat": ("fmt",), "sh_str": ("fmt",),
+               "sh_scanf": ("bufio", "os", "strconv"), "sh_toInt": ("math",),
+               "sh_toFloat": ("strconv",)}
 
     SHIMS = {
-        "scanf": '''\
+        "sh_scanf": '''\
 var __in = bufio.NewReader(os.Stdin)
 
 func __scanf() int {
@@ -57,7 +54,7 @@ func __scanf() int {
 \tvalue, _ := strconv.Atoi(line)
 \treturn value
 }''',
-        "concat": '''\
+        "sh_concat": '''\
 func __concat(parts ...any) string {
 \tout := ""
 \tfor _, part := range parts {
@@ -65,7 +62,7 @@ func __concat(parts ...any) string {
 \t}
 \treturn out
 }''',
-        "pow": '''\
+        "sh_pow": '''\
 func __pow(base, exp int) int {
 \tresult := 1
 \tfor i := 0; i < exp; i++ {
@@ -73,7 +70,7 @@ func __pow(base, exp int) int {
 \t}
 \treturn result
 }''',
-        "fact": '''\
+        "sh_fact": '''\
 func __fact(n int) int {
 \tif n < 0 {
 \t\tpanic("factorial of negative number")
@@ -84,25 +81,25 @@ func __fact(n int) int {
 \t}
 \treturn result
 }''',
-        "tern": '''\
+        "sh_tern": '''\
 func __tern(cond bool, a, b int) int {
 \tif cond {
 \t\treturn a
 \t}
 \treturn b
 }''',
-        "str": '''\
+        "sh_str": '''\
 func __str(value any) string {
 \treturn fmt.Sprint(value)
 }''',
-        "b2i": '''\
+        "sh_b2i": '''\
 func __b2i(value bool) int {
 \tif value {
 \t\treturn 1
 \t}
 \treturn 0
 }''',
-        "toInt": '''\
+        "sh_toInt": '''\
 func __toInt(value any) int {
 \tswitch v := value.(type) {
 \tcase float64:
@@ -111,7 +108,7 @@ func __toInt(value any) int {
 \t\treturn v.(int)
 \t}
 }''',
-        "toFloat": '''\
+        "sh_toFloat": '''\
 func __toFloat(value any) float64 {
 \tswitch v := value.(type) {
 \tcase int:
@@ -123,7 +120,7 @@ func __toFloat(value any) float64 {
 \t\treturn v.(float64)
 \t}
 }''',
-        "toBool": '''\
+        "sh_toBool": '''\
 func __toBool(value any) bool {
 \tswitch v := value.(type) {
 \tcase float64:
@@ -136,70 +133,44 @@ func __toBool(value any) bool {
 }''',
     }
 
-    # -- statement shapes --------------------------------------------------
-    def _indent(self, lines: list[str]) -> list[str]:
-        return [self.INDENT + line if line else line for line in lines]
-
-    def assign(self, target, expr, declares):
-        if declares:
-            return [f"{target} := {expr}", f"_ = {target}"]
-        return [f"{target} = {expr}"]
-
-    def var_decl(self, name, course_type, init, is_struct):
-        go_type = course_type if is_struct else self.TYPES[course_type]
-        decl = f"var {name} {go_type}"
+    # -- shapes ------------------------------------------------------------
+    def spell_declare(self, node, init):
+        decl = f"var {node.name} {self.type_of(node.type)}"
         if init is not None:
             decl += f" = {init}"
-        return [decl, f"_ = {name}"]
+        return [decl, f"_ = {node.name}"]   # Go rejects unused locals
 
-    def block(self, body, scoped):
-        return ["{", *self._indent(body), "}"]
+    def spell_while(self, cond, body):
+        return [f"for {cond} {{", *self.indent(body), "}"]
 
-    def if_(self, cond, then, other):
-        out = [f"if {cond} {{", *self._indent(then)]
-        if other is not None:
-            out += ["} else {", *self._indent(other)]
-        return out + ["}"]
-
-    def while_(self, cond, body):
-        return [f"for {cond} {{", *self._indent(body), "}"]
-
-    def for_(self, init, cond, step, body):
-        header = f"for {init[0] if init else ''}; {cond}; " \
-                 f"{step[0] if step else ''} {{"
-        return [header, *self._indent(body), "}"]
-
-    def function(self, name, params, ret_course_type, body, assigned_globals):
-        sig = ", ".join(f"{n} {self.TYPES[t]}" for n, t in params)
-        ret = self.TYPES[ret_course_type]
+    def spell_func(self, func, body):
+        params = ", ".join(f"{n} {self.type_of(t)}" for n, t in func.params)
+        ret = self.type_of(func.ret)
         ret = f" {ret}" if ret else ""
-        return [f"func {name}({sig}){ret} {{", *self._indent(body), "}", ""]
+        return [f"func {func.name}({params}){ret} {{", *self.indent(body),
+                "}", ""]
 
-    def struct(self, name, fields):
-        rows = [f"{n} {self.TYPES[t]}" for n, t in fields]
-        return [f"type {name} struct {{", *self._indent(rows), "}", ""]
+    def spell_struct(self, struct):
+        rows = [f"{n} {self.type_of(t)}" for n, t in struct.fields]
+        return [f"type {struct.name} struct {{", *self.indent(rows), "}", ""]
 
-    def global_var(self, name, course_type, init):
-        decl = f"var {name} {self.TYPES[course_type]}"
+    def spell_global(self, glob, init):
+        decl = f"var {glob.name} {self.type_of(glob.type)}"
         if init is not None:
             decl += f" = {init}"
-        return [decl]
+        return [decl]                        # globals may be unused in Go
 
-    def program(self, decls, main_body):
+    def assemble(self, module, decls):
         imports = sorted({pkg for key, pkgs in self.IMPORTS.items()
                           if key in self.used for pkg in pkgs})
         out = ["package main", ""]
         if len(imports) == 1:
             out += [f'import "{imports[0]}"', ""]
         elif imports:
-            out += ["import (", *self._indent([f'"{p}"' for p in imports]),
+            out += ["import (", *self.indent([f'"{p}"' for p in imports]),
                     ")", ""]
-        prelude = self.prelude()
-        if prelude:
-            out += prelude
+        out += self.prelude()
         out += decls
-        if main_body is not None:
-            out += [f"func main() {{", *self._indent(main_body), "}"]
         while out and out[-1] == "":
             out.pop()
         return "\n".join(out) + "\n"
@@ -207,7 +178,7 @@ func __toBool(value any) bool {
     # -- defect materialization -------------------------------------------
     def defect_program(self, text):
         return ("package main\n\nfunc main() {\n"
-                + "\n".join(self._indent(text.splitlines()))
+                + "\n".join(self.indent(text.splitlines()))
                 + "\n}\n")
 
     def phase_for(self, defect: Defect) -> Phase:

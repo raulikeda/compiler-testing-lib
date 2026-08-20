@@ -19,6 +19,7 @@ the real toolchain's diagnostic, informational).
 from __future__ import annotations
 
 import os
+import re
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 
@@ -53,9 +54,12 @@ class VersionReport:
 
 
 def _first_line(text: str) -> str:
+    """The first real diagnostic line: skip go build's '# package' header
+    and strip the scratch-file position prefix (./prog.go:5:6:)."""
     for line in text.splitlines():
-        if line.strip():
-            return line.strip()
+        if line.strip() and not line.startswith("#"):
+            return re.sub(r"^\S*prog\.\w+:\d+(?::\d+)?:\s*", "",
+                          line.strip())
     return ""
 
 

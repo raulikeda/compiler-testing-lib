@@ -44,6 +44,9 @@ class TokenKind(enum.Enum):
     OPEN_BRA = "OPEN_BRA"
     CLOSE_BRA = "CLOSE_BRA"
     EOL = "EOL"            # ;  (the course names the statement terminator EOL)
+    NEWLINE = "NEWLINE"    # line end / end-of-input; prints as "EOL" in
+                           # diagnostics (course behavior) but, unlike ';',
+                           # is skippable between statements
     COMMA = "COMMA"
     DOT = "DOT"            # struct field access (x2.3)
 
@@ -66,6 +69,8 @@ class TokenKind(enum.Enum):
     INVALID_NUMBER = "INVALID_NUMBER"      # [Lexer] Invalid number format: X
 
     def __str__(self) -> str:  # so diagnostics read "CLOSE_PAR", not "TokenKind..."
+        if self is TokenKind.NEWLINE:
+            return "EOL"       # the reference prints line ends as EOL
         return self.value
 
 
@@ -75,6 +80,9 @@ class Token:
     lexeme: str
     line: int = 1
     col: int = 1
+    # a digit-led word like ``1x``: scanned as one IDEN-shaped token that the
+    # parser must reject ("Unexpected token IDEN"), mirroring the reference
+    malformed: bool = False
 
     def __repr__(self) -> str:
         return f"Token({self.kind}, {self.lexeme!r})"

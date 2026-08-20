@@ -119,6 +119,7 @@ class ParseDefect(Defect):
     found: Optional["Token"] = None
     expected: Optional[str] = None
     tail_tokens: list = field(default_factory=list)
+    error_index: int = 0   # index into tail_tokens of the offending token
 
 
 @dataclass

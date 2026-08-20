@@ -78,6 +78,11 @@ class Lexer:
         tokens: list[Token] = []
         while self.pos < len(self.src):
             ch = self._peek()
+            if ch == "\n" and self.level.statements:
+                line, col = self.line, self.col
+                self._advance()
+                tokens.append(self._token(K.NEWLINE, "\n", line, col))
+                continue
             if ch in " \t\r\n":
                 self._advance()
                 continue
@@ -86,6 +91,9 @@ class Lexer:
                     self._advance()
                 continue
             tokens.append(self._next_token())
+        if self.level.statements:
+            # the reference surfaces end-of-input as a final line end
+            tokens.append(self._token(K.NEWLINE, "", self.line, self.col))
         tokens.append(self._token(K.EOF, "", self.line, self.col))
         return tokens
 
@@ -148,6 +156,12 @@ class Lexer:
         start = self.pos
         while self._peek().isdigit():
             self._advance()
+        if self._peek().isalpha() or self._peek() == "_":
+            # digit-led word (``1x``): one malformed identifier token
+            while self._peek().isalnum() or self._peek() == "_":
+                self._advance()
+            return Token(K.IDEN, self.src[start:self.pos], line, col,
+                         malformed=True)
         if self.level.floats and self._peek() == ".":
             self._advance()
             while self._peek().isdigit():

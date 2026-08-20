@@ -47,7 +47,9 @@ _V20 = replace(_V12, name="v2.0", expr_mode=False, comments=True,
 _V21 = replace(_V20, name="v2.1", blocks=True, scanf=True)
 _V22 = replace(_V21, name="v2.2", types=True)
 _V23 = replace(_V22, name="v2.3", functions=True)
-_V30 = replace(_V23, name="v3.0")
+# v3.0 targets assembly but its corpus is a v2.2-level block program;
+# functions reappear in the x3.0 extra-credit track.
+_V30 = replace(_V22, name="v3.0")
 
 LEVELS: dict[str, LanguageLevel] = {
     "v0.0": _V00,
@@ -67,7 +69,7 @@ LEVELS: dict[str, LanguageLevel] = {
     "x2.1": replace(_V21, name="x2.1", for_ternary=True),
     "x2.2": replace(_V22, name="x2.2", floats=True),
     "x2.3": replace(_V23, name="x2.3", structs=True),
-    "x3.0": replace(_V30, name="x3.0"),
+    "x3.0": replace(_V23, name="x3.0"),
 }
 
 

@@ -27,14 +27,11 @@ class TranspileResult:
 
 
 def transpile(source: str, target: str, version: str) -> TranspileResult:
-    from .codegen import get_backend   # deferred: registers backends
+    from .codegen import Emitter, get_backend   # deferred: registers backends
 
     level = get_level(version)
-    backend = get_backend(target)
+    spec = get_backend(target)(level)
     program = parse_source(source, version)
-    transformer = backend.transformer_cls(level)
-    target_ast = transformer.transform(program, source)
-    code = backend.printer_cls().print(target_ast)
+    code, phase = Emitter(spec).emit(program, source)
     return TranspileResult(code=code, defect=program.defect,
-                           phase=transformer.declared_phase(program),
-                           program=program)
+                           phase=phase, program=program)

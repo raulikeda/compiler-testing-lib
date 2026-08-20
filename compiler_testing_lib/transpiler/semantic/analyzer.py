@@ -320,7 +320,16 @@ class SemanticAnalyzer(Visitor):
     # -- expressions -------------------------------------------------------
     def expr_type(self, node: ast.Node):
         """Type an expression; in untyped stages everything is int and only
-        name resolution plus literal division by zero are checked."""
+        name resolution plus literal division by zero are checked.
+
+        As a side effect the computed type is annotated on the node
+        (``node.sem_type``) for backends that need it (e.g. Julia's choice
+        of ``÷`` vs ``/``)."""
+        result = self._expr_type(node)
+        node.sem_type = result
+        return result
+
+    def _expr_type(self, node: ast.Node):
         if isinstance(node, ast.IntLit):
             return T.INT
         if isinstance(node, ast.FloatLit):

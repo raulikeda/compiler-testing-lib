@@ -42,14 +42,14 @@ def render_tokens(tokens: list[Token],
         if tok.kind is K.NEWLINE:
             flush()
             continue
-        if spell is not None:
-            spelled = spell(tok)
-        elif tok.kind is K.STR:
-            spelled = f'"{tok.lexeme}"'
-        elif tok.kind is K.UNTERMINATED_STR:
-            spelled = f'"{tok.lexeme}'
-        else:
-            spelled = tok.lexeme
+        spelled = spell(tok) if spell is not None else None
+        if spelled is None:
+            if tok.kind is K.STR:
+                spelled = f'"{tok.lexeme}"'
+            elif tok.kind is K.UNTERMINATED_STR:
+                spelled = f'"{tok.lexeme}'
+            else:
+                spelled = tok.lexeme
         line.append(spelled)
     flush()
     return "\n".join(parts)

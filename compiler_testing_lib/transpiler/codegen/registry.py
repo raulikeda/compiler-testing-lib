@@ -1,36 +1,24 @@
 """Phase 4 — backend registry (Factory).
 
-A backend is a bundle: target AST + Transformer + Printer + toolchain
-recipe.  Adding a language means one new ``codegen/<lang>/`` package and
-one :func:`register` call — nothing else in the pipeline changes.
+A backend IS its :class:`~.spec.LanguageSpec` subclass: the declarative
+equivalence tables plus the toolchain recipe (``build_template``,
+``run_template``, ``ext``, ``docker_image``) are class attributes.  Adding
+a language means one new spec module decorated with :func:`register` —
+nothing else in the pipeline changes.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional
+_REGISTRY: dict[str, type] = {}
 
 
-@dataclass(frozen=True)
-class Backend:
-    name: str                       # registry key: "go", "julia"
-    ext: str                        # file extension: "go", "jl"
-    transformer_cls: type
-    printer_cls: type
-    build_template: Optional[str]   # e.g. "go build -o {exe_file} {src_file}"; None = no build step
-    run_template: str               # e.g. "{exe_file}" or "julia {src_file}"
-    docker_image: str               # images/<name> used by the harness
+def register(spec_cls: type) -> type:
+    """Class decorator: puts a LanguageSpec subclass in the registry."""
+    _REGISTRY[spec_cls.name] = spec_cls
+    return spec_cls
 
 
-_REGISTRY: dict[str, Backend] = {}
-
-
-def register(backend: Backend) -> Backend:
-    _REGISTRY[backend.name] = backend
-    return backend
-
-
-def get_backend(name: str) -> Backend:
+def get_backend(name: str) -> type:
     try:
         return _REGISTRY[name]
     except KeyError:

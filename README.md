@@ -108,14 +108,14 @@ source ──lexical──▶ tokens ──syntax──▶ AST ──semantic─
    (lex/parse defects bypass the IR:          ▼                         │
     token passthrough keeps the flaw)   typed IR (ir.nodes)             │
                                               │                         │
-                                        codegen.<target>  ◀── one IREmitter per language
+                                        codegen.<target>  ◀── per-IR-node emitting classes
                                               ▼
                                         target source
 ```
 
 - `transpiler/lexical`, `syntax`, `semantic` — error-tolerant front end. It never rejects input: the first defect is recorded as a `[Lexer]`/`[Parser]`/`[Semantic]` diagnostic (reproducing the reference compilers' exact messages, validated against the whole corpus) and translation continues.
 - `transpiler/ir` — a small, typed, target-neutral IR plus the lowering pass. Everything course-specific is resolved here once: name kinds, scoping, `for`-desugaring, `div_int` vs `div_float`, the implicit `main`, and the diagnosed defect materialized as an explicit `CheckType`/`UnresolvedRef` node.
-- `transpiler/codegen` — one `IREmitter` subclass per target (`go.py`, `julia.py`) declaring spellings, shims, toolchain recipe, and defect strategy (in which phase each defect fails: parse/build/run). Adding a language touches nothing else.
+- `transpiler/codegen` — `base.py` gives every IR node a default (C-family) emitting class; a backend module (`go.py`, `julia.py`) declares a small `Backend` (identity, type table, shims, defect strategy — in which phase each defect fails: parse/build/run) plus `@Backend.node`-decorated equivalent classes, with the same generic names, for exactly the IR nodes whose spelling differs. The lowered tree is rebound onto the backend's classes and emits itself polymorphically. Adding a language touches nothing else.
 - `transpiler/harness` — corpus generation and verification under the real toolchains.
 
 ### CLI

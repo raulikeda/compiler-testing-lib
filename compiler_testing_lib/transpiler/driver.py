@@ -11,6 +11,7 @@ from __future__ import annotations
 
 from .diagnostics import ErrorCategory as C, LexDefect
 from .lexical import Lexer, TokenKind as K, preprocess
+from .semantic import SemanticAnalyzer
 from .syntax import ast
 from .syntax.parser import Parser
 from .versions import get_level
@@ -46,4 +47,7 @@ def parse_source(source: str, version: str) -> ast.Program:
                     line=tok.line, col=tok.col, raw=tok.lexeme),
                 expr_mode=level.expr_mode)
 
-    return Parser(tokens, level).parse()
+    program = Parser(tokens, level).parse()
+    if program.defect is None:
+        SemanticAnalyzer(level).analyze(program)
+    return program

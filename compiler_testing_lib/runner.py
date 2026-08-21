@@ -38,14 +38,14 @@ class TestRunner:
         divergences = []        
         issue = []
         # check README EBNF if applicable
-        ebnf_path = os.path.join(self._root_dir, 'syntax', self.version, f'ebnf-{self.language.lower()}.json')
+        ebnf_path = os.path.join(self._root_dir, 'syntax', self.version, f'ebnf-{self.language.lower()}.txt')
         if ebnf_check is not None and os.path.exists(ebnf_path):
             if os.path.exists(Path('README.md')):
                 with open(Path('README.md'), 'r') as f:
                     readme_content = f.read()
                 
                 with open(ebnf_path, 'r') as f:
-                    ebnf_model = json.load(f)
+                    ebnf_model = f.read() # json.load(f)
                 ebnf_ok, ebnf_errors = ebnf_check(readme_content, ebnf_model)
                 if not ebnf_ok:
                     message = f"EBNF divergences found in README for version {self.version}:\n\n"
@@ -55,6 +55,16 @@ class TestRunner:
             else:
                 issue.append("- README.md not found in repository.\n")
 
+        # Check if DS is in README.md for versions >= v1.0
+        if self.version >= 'v1.0':
+            if os.path.exists(Path('README.md')):
+                with open(Path('README.md'), 'r') as f:
+                    readme_content = f.read()
+                main_version = self.version.replace("x", "v")
+                if f'https://compiler-tester.insper-comp.com.br/ds?version={main_version}' not in readme_content:
+                    issue.append("- DS image link not found in README.md for version >= v1.0.\n")
+            else:
+                issue.append("- README.md not found in repository.\n")
 
         # Check code structure first
         if self.expected_structure is not None:

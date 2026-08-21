@@ -1,8 +1,10 @@
 #!/usr/bin/bash
 
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 <language>  (ex: haskell, rust, go)"
+  exit 1
+fi
+
 docker run --rm -it \
   --entrypoint bash \
-  -e DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1 \
-  -e DOTNET_NOLOGO=1 \
-  -e DOTNET_CLI_TELEMETRY_OPTOUT=1 \
-  compiler-testing-lib-haskell
+  "compiler-testing-lib-$1"

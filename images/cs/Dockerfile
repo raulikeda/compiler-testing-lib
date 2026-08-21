@@ -21,6 +21,8 @@ RUN wget https://packages.microsoft.com/config/debian/13/packages-microsoft-prod
 ENV DOTNET_ROOT="/usr/share/dotnet"
 ENV PATH="${DOTNET_ROOT}:${PATH}"
 ENV DOTNET_CLI_TELEMETRY_OPTOUT="1"
+ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE="1"
+ENV DOTNET_NOLOGO="1"
 
 # Supress welcome message from .NET
 RUN echo 'DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1' >> /etc/environment && \

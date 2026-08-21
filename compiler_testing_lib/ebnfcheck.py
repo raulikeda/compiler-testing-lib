@@ -199,7 +199,6 @@ def load_and_compare(readme: str, ebnf_model: str) -> Tuple[bool, List[str]]:
     if not m:
         return False, ["No EBNF code block found in README."]
     ebnf = m.group(1)
-
     try:
         ok, errors = compare_to_key(ebnf, ebnf_model)
         return ok, errors
@@ -208,7 +207,7 @@ def load_and_compare(readme: str, ebnf_model: str) -> Tuple[bool, List[str]]:
 
 if __name__ == "__main__":
 
-    with open("./syntax/v2.3/ebnf-rust.json", 'r') as f:
+    with open("./syntax/v1.1/ebnf-rust.txt", 'r') as f:
         ebnf_gab = f.read()
 
     ebnf_ex = """Um texto qualquer
@@ -250,9 +249,9 @@ BOOLEAN = "true" | "false" ;
     FACTOR = ("+" | "-"), FACTOR | "(", EXPRESION, ")" | NUMBER ;
     ```"""
 
-    print(load_and_compare(ebnf_ex, ebnf_gab))
-    print(load_and_compare(ebnf_ex, "v2.3"))
-    print(load_and_compare(ebnf_alt, "v2.3"))
-    print(load_and_compare(ebnf_err, "v2.3"))
+    print(load_and_compare(ebnf_alt, ebnf_gab))
+    # print(load_and_compare(ebnf_ex, "v2.3"))
+    # print(load_and_compare(ebnf_alt, "v2.3"))
+    # print(load_and_compare(ebnf_err, "v2.3"))
 
-    print(load_and_compare(ebnf_err, "v2.3"))
+    # print(load_and_compare(ebnf_err, "v2.3"))

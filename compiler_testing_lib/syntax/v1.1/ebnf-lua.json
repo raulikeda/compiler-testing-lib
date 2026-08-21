@@ -1,1 +1,0 @@
-"EXPRESSION = TERM, { (\"+\" | \"-\"), TERM } ;\nTERM = FACTOR, { (\"*\" | \"/\"), FACTOR } ;\nFACTOR = (\"+\" | \"-\"), FACTOR | \"(\", EXPRESSION, \")\" | NUMBER ;\nNUMBER = DIGIT, {DIGIT} ;\nDIGIT = 0 | 1 | ... | 9 ;"

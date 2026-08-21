@@ -14,24 +14,15 @@ for dir in */ ; do
     if [ "$name" = "python" ]; then
         continue
     fi
-    if [ "$name" = "haskell" ]; then
-        continue
-    fi
-    if [ "$name" = "ocaml" ]; then
-        continue
-    fi
-    if [ "$name" = "swift" ]; then
-        continue
-    fi
-    if [ "$name" = "php" ]; then
-        continue
-    fi
-    if [ "$name" = "zig" ]; then
-        continue
-    fi
-    if [ "$name" = "nim" ]; then
-        continue
-    fi
+    # if [ "$name" = "haskell" ]; then
+    #     continue
+    # fi
+    # if [ "$name" = "ocaml" ]; then
+    #     continue
+    # fi
+    # if [ "$name" = "swift" ]; then
+    #     continue
+    # fi
     if [ -f "${name}/Dockerfile" ]; then
         image_name="compiler-testing-lib-${name}:latest"
         echo "Building $image_name from ${name}/Dockerfile..."

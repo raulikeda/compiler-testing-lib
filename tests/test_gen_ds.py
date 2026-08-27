@@ -1,12 +1,9 @@
-"""The three rewrites gen_ds.to_iso_ebnf applies to turn a course key into
-ISO-14977 for DrawGrammar; every other construct must pass through untouched."""
 import glob, os, re, sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "tools"))
-from gen_ds import to_iso_ebnf  # noqa: E402
+from gen_ds import to_iso_ebnf, BARE  # noqa: E402
 
 SYNTAX = os.path.join(os.path.dirname(__file__), "..", "compiler_testing_lib", "syntax")
-BARE = r"(?<![\w\"'.])(?:[0-9]|[A-Za-z]|\.\.\.)(?![\w\"'.])"
 
 
 def test_epsilon_becomes_empty_alternative():

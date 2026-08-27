@@ -1,5 +1,3 @@
-# DrawGrammar (https://github.com/jacquev6/DrawGrammar) command-line tool.
-# See README.md in this directory for why it is built this way and how to use it.
 FROM docker.io/ocaml/opam:debian-12-ocaml-4.07
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \

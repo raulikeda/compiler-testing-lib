@@ -1,0 +1,18 @@
+PROGRAM = { (FUNCDEC | VARDEC | ε), "\n" } ;
+FUNCDEC = "func", IDENTIFIER, "(", ((IDENTIFIER, TYPE, { ",", IDENTIFIER, TYPE }) | ε), ")", (TYPE | ε), BLOCK ;
+BLOCK = "{", "\n", { STATEMENT }, "}" ;
+STATEMENT = (("if", BOOLEXPRESSION, BLOCK, (("else", BLOCK) | ε)) | ("for", BOOLEXPRESSION, BLOCK) | (IDENTIFIER, (("=", BOOLEXPRESSION) | ("(", ((BOOLEXPRESSION, { ",", BOOLEXPRESSION }) | ε), ")"))) | ("Println", "(", BOOLEXPRESSION, ")") | VARDEC | ("return", BOOLEXPRESSION) | BLOCK | ε), "\n" ;
+VARDEC = "var", IDENTIFIER, TYPE, (("=", BOOLEXPRESSION) | ε) ;
+BOOLEXPRESSION = BOOLTERM, { "||", BOOLTERM } ;
+BOOLTERM = RELEXPRESSION, { "&&", RELEXPRESSION } ;
+RELEXPRESSION = EXPRESSION, { ("==" | "<" | ">"), EXPRESSION } ;
+EXPRESSION = TERM, { ("+" | "-"), TERM } ;
+TERM = FACTOR, { ("*" | "/"), FACTOR } ;
+FACTOR = ("+" | "-" | "!"), FACTOR | "(", BOOLEXPRESSION, ")" | NUMBER | IDENTIFIER, (("(", ((BOOLEXPRESSION, { ",", BOOLEXPRESSION }) | ε), ")") | ε) | "Scanln", "(", ")" | STRING | BOOLEAN ;
+TYPE = "int" | "string" | "bool" ;
+BOOLEAN = "true" | "false" ;
+STRING = '"', { LETTER | DIGIT | " " }, '"' ;
+NUMBER = DIGIT, {DIGIT} ;
+DIGIT = 0 | 1 | ... | 9 ;
+IDENTIFIER = LETTER, {LETTER | DIGIT | "_"} ;
+LETTER = a | b | ... | z | A | B | ... | Z ;

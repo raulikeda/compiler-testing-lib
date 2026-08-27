@@ -62,6 +62,8 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 ENV GOROOT="/usr/local/go"
 ENV GOPATH="/go"
 ENV PATH="${GOPATH}/bin:${PATH}"
+ENV GO111MODULE="auto"
+ENV GOTOOLCHAIN="local"
 
 WORKDIR /src
 ENTRYPOINT ["python3", "/app/run_in_container.py"]

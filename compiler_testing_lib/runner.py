@@ -1,8 +1,69 @@
 import os
+import re
+import html
+import urllib.parse
 import yaml
 import subprocess
 import json
 from pathlib import Path
+
+GO_MULTIFILE_TEMPLATE = "go run ."
+
+LEGACY_COMMAND_TEMPLATES = {
+    "go run main.go": GO_MULTIFILE_TEMPLATE,
+}
+
+
+def normalize_command_template(command_template: str) -> str:
+    """Return the multi-file equivalent of a legacy template, else the template itself."""
+    key = " ".join(command_template.split())
+    return LEGACY_COMMAND_TEMPLATES.get(key, command_template)
+
+
+def is_go_template(command_template: str) -> bool:
+    return bool(re.search(r"\bgo (build|run)\b", command_template))
+
+
+def go_module_hint(project_dir=".") -> str | None:
+    """Issue text when Go sources sit in sub-directories without a go.mod, else None."""
+    project = Path(project_dir)
+    if (project / "go.mod").exists():
+        return None
+    nested = [p for p in project.glob("*/**/*.go") if ".git" not in p.parts]
+    if not nested:
+        return None
+    return (
+        "- Go sources found in sub-directories but no go.mod at the repository root. "
+        "Sub-packages can only be imported from a module: run `go mod init <name>` "
+        "and commit go.mod.\n"
+    )
+
+
+DS_URL = "https://compiler-tester.insper-comp.com.br/ds"
+_DS_LINK_RE = re.compile(re.escape(DS_URL) + r"\?([^\s)\]\"'<>]*)")
+
+
+def ds_link_ok(readme: str, version: str, language: str) -> bool:
+    """True if the README links the DS for `version`.
+
+    Accepts `?version=vX.Y` alone or with `&language=<lang>` (any parameter
+    order, `&amp;` inside <img> allowed); a link naming another language fails.
+    """
+    for query in _DS_LINK_RE.findall(readme):
+        params = urllib.parse.parse_qs(html.unescape(query))
+        if params.get("version", [None])[0] != version:
+            continue
+        link_language = params.get("language", [None])[0]
+        if link_language is None or link_language.lower() == language.lower():
+            return True
+    return False
+
+
+def python_entry_file(command_template: str) -> str:
+    """Entry script named in a Python command template, defaulting to main.py."""
+    match = re.search(r"(\S+\.py)\b", command_template)
+    return match.group(1) if match else "main.py"
+
 
 class TestRunner:
     def __init__(self, language='C', version=None, max_errors=5, timeout=10, file_extension='c'):
@@ -35,8 +96,12 @@ class TestRunner:
         return data
 
     def run_tests(self, command_template, asm_build_template=None, asm_run_template=None, check=None, ebnf_check=None):
-        divergences = []        
+        divergences = []
         issue = []
+        normalized = normalize_command_template(command_template)
+        if normalized != command_template:
+            print(f"Command template '{command_template}' rewritten to multi-file form: {normalized}")
+            command_template = normalized
         # check README EBNF if applicable
         ebnf_path = os.path.join(self._root_dir, 'syntax', self.version, f'ebnf-{self.language.lower()}.txt')
         if ebnf_check is not None and os.path.exists(ebnf_path):
@@ -61,15 +126,24 @@ class TestRunner:
                 with open(Path('README.md'), 'r') as f:
                     readme_content = f.read()
                 main_version = self.version.replace("x", "v")
-                if f'https://compiler-tester.insper-comp.com.br/ds?version={main_version}' not in readme_content:
-                    issue.append("- DS image link not found in README.md for version >= v1.0.\n")
+                if not ds_link_ok(readme_content, main_version, self.language):
+                    issue.append(
+                        "- DS image link not found in README.md for version >= v1.0. "
+                        f"Expected `{DS_URL}?version={main_version}` "
+                        f"(optionally `&language={self.language.lower()}`).\n"
+                    )
             else:
                 issue.append("- README.md not found in repository.\n")
+
+        if is_go_template(command_template):
+            hint = go_module_hint()
+            if hint:
+                issue.append(hint)
 
         # Check code structure first
         if self.expected_structure is not None:
             if "python" in command_template.lower() and check is not None:
-                divergences = check("main.py", self.expected_structure)
+                divergences = check(python_entry_file(command_template), self.expected_structure)
                 if len(divergences) > 0:
                     message = f"Code Syntax Test:"
                     for d in divergences:

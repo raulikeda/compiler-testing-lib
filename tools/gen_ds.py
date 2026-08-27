@@ -7,7 +7,7 @@
 Source of truth: compiler_testing_lib/syntax/<version>/ebnf-<lang>.txt.
 The key is rewritten to strict ISO-14977 (the only dialect DrawGrammar reads)
 and fed to the `draw_grammar` CLI (https://github.com/jacquev6/DrawGrammar,
-`opam install DrawGrammar`, or the container in tools/drawgrammar/).
+`opam install DrawGrammar`, or the container image in tools/drawgrammar/ — see its README).
 
 The three differences between the course keys and ISO-14977:
   ε / λ                     ->  empty alternative        ("ε" is not ASCII)

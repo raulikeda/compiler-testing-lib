@@ -1,9 +1,5 @@
 # DrawGrammar (https://github.com/jacquev6/DrawGrammar) command-line tool.
-# The package and its deps (General, JsOfOCairo) were removed from the live
-# opam repository in 2024 and live in opam-repository-archive. JsOfOCairo 2.0.0
-# needs js_of_ocaml-compiler < 3.4, i.e. OCaml < 4.08, hence the 4.07 base.
-# Build once:   podman build -t drawgrammar tools/drawgrammar
-# Then:         python3 tools/gen_ds.py v2.1 go -o out/ --draw-grammar "podman run --rm --userns=keep-id -v .:/work:Z -w /work localhost/drawgrammar"
+# See README.md in this directory for why it is built this way and how to use it.
 FROM docker.io/ocaml/opam:debian-12-ocaml-4.07
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \

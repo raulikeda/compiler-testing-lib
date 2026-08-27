@@ -1,12 +1,12 @@
 PROGRAM = { STATEMENT } ;
-BLOCK = "{", EOL, { STATEMENT }, "}" ;
-STATEMENT = ((IF, BOOLEXPRESSION, BLOCK, (("ELSE", BLOCK) | ε)) | (WHILE, BOOLEXPRESSION, BLOCK) | (IDENTIFIER, "=", BOOLEXPRESSION) | (PRINT, "(", BOOLEXPRESSION, ")") | BLOCK | ε), EOL ;
+BLOCK = "{", "\n", { STATEMENT }, "}" ;
+STATEMENT = (("if", BOOLEXPRESSION, BLOCK, (("else", BLOCK) | ε)) | ("for", BOOLEXPRESSION, BLOCK) | (IDENTIFIER, "=", BOOLEXPRESSION) | ("Println", "(", BOOLEXPRESSION, ")") | BLOCK | ε), "\n" ;
 BOOLEXPRESSION = BOOLTERM, { "||", BOOLTERM } ;
 BOOLTERM = RELEXPRESSION, { "&&", RELEXPRESSION } ;
 RELEXPRESSION = EXPRESSION, { ("==" | "<" | ">"), EXPRESSION } ;
 EXPRESSION = TERM, { ("+" | "-"), TERM } ;
 TERM = FACTOR, { ("*" | "/"), FACTOR } ;
-FACTOR = ("+" | "-" | "!"), FACTOR | "(", BOOLEXPRESSION, ")" | NUMBER | IDENTIFIER | READ, "(", ")" ;
+FACTOR = ("+" | "-" | "!"), FACTOR | "(", BOOLEXPRESSION, ")" | NUMBER | IDENTIFIER | "Scanln", "(", ")" ;
 NUMBER = DIGIT, {DIGIT} ;
 DIGIT = 0 | 1 | ... | 9 ;
 IDENTIFIER = LETTER, {LETTER | DIGIT | "_"} ;

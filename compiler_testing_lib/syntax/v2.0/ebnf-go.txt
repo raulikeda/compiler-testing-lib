@@ -1,5 +1,5 @@
 PROGRAM = { STATEMENT } ;
-STATEMENT = ((IDENTIFIER, "=", EXPRESSION) | ("Println", "(", EXPRESSION, ")") | ε), "\n" ;
+STATEMENT = ((IDENTIFIER, "=", EXPRESSION) | (PRINT, "(", EXPRESSION, ")") | ε), EOL ;
 EXPRESSION = TERM, { ("+" | "-"), TERM } ;
 TERM = FACTOR, { ("*" | "/"), FACTOR } ;
 FACTOR = ("+" | "-"), FACTOR | "(", EXPRESSION, ")" | NUMBER | IDENTIFIER ;

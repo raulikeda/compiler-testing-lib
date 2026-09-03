@@ -7,17 +7,6 @@ import subprocess
 import json
 from pathlib import Path
 
-GO_MULTIFILE_TEMPLATE = "go run ."
-
-LEGACY_COMMAND_TEMPLATES = {
-    "go run main.go": GO_MULTIFILE_TEMPLATE,
-}
-
-
-def normalize_command_template(command_template: str) -> str:
-    """Return the multi-file equivalent of a legacy template, else the template itself."""
-    key = " ".join(command_template.split())
-    return LEGACY_COMMAND_TEMPLATES.get(key, command_template)
 
 
 def is_go_template(command_template: str) -> bool:
@@ -98,10 +87,7 @@ class TestRunner:
     def run_tests(self, command_template, asm_build_template=None, asm_run_template=None, check=None, ebnf_check=None):
         divergences = []
         issue = []
-        normalized = normalize_command_template(command_template)
-        if normalized != command_template:
-            print(f"Command template '{command_template}' rewritten to multi-file form: {normalized}")
-            command_template = normalized
+
         # check README EBNF if applicable
         ebnf_path = os.path.join(self._root_dir, 'syntax', self.version, f'ebnf-{self.language.lower()}.txt')
         if ebnf_check is not None and os.path.exists(ebnf_path):

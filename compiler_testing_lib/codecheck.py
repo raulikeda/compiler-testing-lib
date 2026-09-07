@@ -11,73 +11,83 @@ stdlib_ast = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(stdlib_ast)
 
 
-def resolve_import(name: str) -> bool:
-    local = str(Path.cwd())
-    spec = importlib.machinery.PathFinder.find_spec(name, [local])
-    if spec is None or spec.origin is None:
-        return False
+def _find(name: str, paths: list[Path]):
+    """Resolve one dotted component in `paths` -> (file, search_locations), or None.
 
-    origin = spec.origin
+    `file` is None for a namespace package; `search_locations` is empty for a module.
+    """
+    spec = importlib.machinery.PathFinder.find_spec(name, [str(p) for p in paths])
+    if spec is None:
+        return None
+    file = None
+    if spec.has_location and spec.origin:
+        file = Path(spec.origin).resolve()
+    locations = [Path(p) for p in (spec.submodule_search_locations or [])]
+    return file, locations
 
-    if origin == "built-in":
-        return False
 
-    origin_path = Path(origin).resolve()
+def _resolve_dotted(parts: list[str], paths: list[Path], root: Path):
+    """Walk `a.b.c` from `paths` -> (files, search_locations).
 
-    # Project root heuristic
-    project_root = Path.cwd().resolve()
+    `files` are the __init__/module files on the chain that live under `root`;
+    `search_locations` belong to the last component (None for a plain module).
+    """
+    files: list[Path] = []
+    for part in parts:
+        if paths is None:
+            return files, None
+        hit = _find(part, paths)
+        if hit is None:
+            return files, None
+        file, locations = hit
+        if file is not None and file.suffix == ".py" and root in file.parents:
+            files.append(file)
+        paths = locations if locations else None
+    return files, paths
 
-    if project_root in origin_path.parents:
-        return True
 
-    # site-packages heuristic
-    if "site-packages" in origin_path.parts or "dist-packages" in origin_path.parts:
-        return False
-
-    return False
-
-def extract_imports(py_file: Path) -> list[str]:
-    tree = stdlib_ast.parse(py_file.read_text(encoding="utf-8"), filename=str(py_file))
-    imports = []
-
+def _imports_of(tree: stdlib_ast.AST, current_file: Path, root: Path) -> list[Path]:
+    """Project-local files imported by `tree` (absolute, resolved)."""
+    top = [root]
+    out: list[Path] = []
     for node in stdlib_ast.walk(tree):
         if isinstance(node, stdlib_ast.Import):
-            for a in node.names:
-                if resolve_import(a.name):
-                    imports.append(resolve_module_file(a.name))
+            for alias in node.names:
+                out.extend(_resolve_dotted(alias.name.split("."), top, root)[0])
         elif isinstance(node, stdlib_ast.ImportFrom):
-            if resolve_import(node.module):
-                imports.append(resolve_module_file(node.module))
-    return imports
+            if node.level == 0:
+                base = top
+                parts = node.module.split(".") if node.module else []
+            else:
+                package_dir = current_file.parent
+                for _ in range(node.level - 1):
+                    package_dir = package_dir.parent
+                base = [package_dir]
+                parts = node.module.split(".") if node.module else []
+            files, sub = _resolve_dotted(parts, base, root)
+            out.extend(files)
+            if sub is not None:
+                for alias in node.names:
+                    if alias.name != "*":
+                        out.extend(_resolve_dotted([alias.name], sub, root)[0])
+    return out
 
-def resolve_module_file(module_name: str) -> Path | None:
-    local = str(Path.cwd())
-    spec = importlib.machinery.PathFinder.find_spec(module_name, [local])
-    # spec = importlib.util.find_spec(module_name)
-    if spec is None or spec.origin is None:
-        return None
-    if spec.origin == "built-in":
-        return None
-    return (spec.origin)
-
-# function that reads a file and returns its AST and imports path
-def read_file_ast_and_imports(file_path: Path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        file_content = f.read()
-    tree = stdlib_ast.parse(file_content, filename=str(file_path))
-    imports = extract_imports(file_path)
-    return tree, imports
 
 def load_program_ast(main_file: Path) -> list[stdlib_ast.AST]:
-    tree, imports = read_file_ast_and_imports(main_file)
-    modules = [tree]
-
-    while len(imports) > 0:
-        module_path = imports.pop()
-        subtree, subimports = read_file_ast_and_imports(Path(module_path))
-        modules.append(subtree)
-        imports.extend(subimports)
-
+    """ASTs of the entry file (always first) and every project-local module it reaches."""
+    main_file = Path(main_file).resolve()
+    root = main_file.parent
+    seen = {main_file}
+    queue = [main_file]
+    modules: list[stdlib_ast.AST] = []
+    while queue:
+        file = queue.pop(0)
+        tree = stdlib_ast.parse(file.read_text(encoding="utf-8"), filename=str(file))
+        modules.append(tree)
+        for dep in _imports_of(tree, file, root):
+            if dep not in seen:
+                seen.add(dep)
+                queue.append(dep)
     return modules
 
 def check_code_structure(modules: list[stdlib_ast.AST], expected: dict[str, list[str]]) -> list[str]:

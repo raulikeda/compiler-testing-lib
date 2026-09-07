@@ -35,6 +35,42 @@ images/                        # Docker build and run scripts
   clean.sh
 ```
 
+## Multi-file submissions
+
+The whole student repository is cloned into the container, and the runner
+executes the repository's `command_template` once per test with the test file
+(or, for v0.0–v1.2, the source text) appended as the last argument. Splitting
+the compiler into several files is supported per language as follows:
+
+- **Python** (`python3 main.py`): `codecheck` follows every project-local
+  import from the entry file — flat modules (`from lexer import Lexer`),
+  sub-packages with or without `__init__.py` (`from src.parser import Parser`,
+  `from src import lexer`, `import src.tokens`) and relative imports inside
+  packages (`from .lexer import Lexer`). Cycles are fine.
+- **Go** (`go run .`; the legacy `go run main.go` template is rewritten to it
+  at runtime by `runner.normalize_command_template`): every `*.go` at the
+  repository root is built as one package. The image runs with
+  `GO111MODULE=auto`, so a `go.mod` is optional for that layout and
+  **required** for sub-packages (`import "<module>/lexer"`; run
+  `go mod init <name>`) — the runner says so instead of failing the build.
+- **Java** (`java main.java`, JDK 25): the launcher compiles the other source
+  files on demand (JEP 458). Each class must live in a file named after it, in
+  a directory matching its package (`Parser.java`, `lexer/Lexer.java` with
+  `package lexer;`); only `main.java` is exempt from that rule.
+
+### DS (syntax diagram) link
+
+For versions ≥ v1.0 the README must link the diagram served by compiler-tester.
+Both forms are accepted, parameters in any order:
+
+```
+https://compiler-tester.insper-comp.com.br/ds?version=v2.1
+https://compiler-tester.insper-comp.com.br/ds?version=v2.1&language=go
+```
+
+The `language` parameter is optional (the server has a per-semester default); a
+link naming a *different* language than the one being tested is rejected.
+
 ## Installation
 
 ### As a Python Library
